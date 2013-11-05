@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="Teo\ProductBundle\Entity\ProductRepository" name="Teo\ProductBundle\Entity\Product" vich="true" table="product">
+    <id name="id" type="integer" column="id" vich="true">
+      <generator strategy="AUTO"/>
+    </id>
+
+    <one-to-many field="prices" target-entity="Teo\ProductBundle\Entity\Price" mapped-by="product"/>
+
+    <one-to-many field="images" target-entity="Teo\ProductBundle\Entity\Image" mapped-by="product">
+      <cascade>
+        <all/>
+      </cascade>
+    </one-to-many>
+
+    <many-to-many field="categories" target-entity="Teo\ProductBundle\Entity\Category" inversed-by="products">
+
+        <join-table name="products_categories">
+          <join-columns>
+            <join-column name="product_id" referenced-column-name="id" />
+          </join-columns>
+          <inverse-join-columns>
+            <join-column name="category_id" referenced-column-name="id" />
+          </inverse-join-columns>
+        </join-table>
+
+        <cascade>
+          <all/>
+        </cascade>
+    </many-to-many>
+
+    <lifecycle-callbacks>
+      <lifecycle-callback type="prePersist" method="setCreatedAtValue"/>
+      <lifecycle-callback type="prePersist" method="setUpdatedAtValue"/>
+      <lifecycle-callback type="preUpdate" method="setUpdatedAtValue"/>
+    </lifecycle-callbacks>
+  </entity>
+</doctrine-mapping>

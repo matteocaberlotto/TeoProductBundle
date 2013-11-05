@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity repository-class="Teo\ProductBundle\Entity\PriceRepository" name="Teo\ProductBundle\Entity\Price" table="price">
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+
+    <one-to-one field="country" target-entity="Teo\ProductBundle\Entity\Country" />
+    <many-to-one field="product" target-entity="Teo\ProductBundle\Entity\Product" inversed-by="prices" />
+
+  </entity>
+</doctrine-mapping>

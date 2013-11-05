@@ -1,0 +1,55 @@
+ul.categories-tree .btn-mini {
+    padding: 0 6px;
+}
+
+ul.categories-tree li a.btn-mini i {
+    margin-top: 1px;
+}
+
+ul.categories-tree,
+ul.categories-tree ul {
+    list-style: none;
+}
+
+ul.categories-tree li i {
+    margin-top: 4px;
+}
+
+ul.categories-tree small i {
+    margin-top: 3px;
+}
+
+ul.categories-tree li {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+ul.categories-tree li small {
+    /*margin-left: 10px;*/
+}
+
+ul.categories-tree li a.category,
+ul.categories-tree li a.product {
+    margin-left: 4px;
+}
+
+ul.categories-tree li a.category {
+    text-transform: uppercase;
+}
+
+ul.categories-tree span {
+    float: left;
+    margin-right: 10px;
+}
+
+ul.categories-tree .btn {
+    
+}
+
+ul.categories-tree li.product {
+    list-style: none;
+}
+
+.sonata-bc .form-horizontal .sonata-collection-row-without-label {
+    margin-left: 200px;
+}
