@@ -2,6 +2,8 @@
 
 namespace Teo\ProductBundle\Model;
 
+use Teo\ProductBundle\Model\Category;
+
 class Category
 {
     /**
@@ -23,6 +25,11 @@ class Category
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $products;
+
+    /**
+     * @var integer the category nesting depth
+     */
+    protected $level;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -177,5 +184,52 @@ class Category
     public function hasProducts()
     {
         return count($this->products);
+    }
+
+    /**
+     * Get level
+     *
+     * @return int
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * Set level
+     *
+     * @return Category
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Set level based on depth self-calculation
+     *
+     * @return Category
+     */
+    public function setCurrentLevel()
+    {
+        $this->setLevel($this->calculateLevel());
+
+        return $this;
+    }
+
+    public function calculateLevel()
+    {
+        $level = 1;
+        $current = $this;
+
+        while ($current->getParent() instanceof Category) {
+            $current = $current->getParent();
+            $level++;
+        }
+
+        return $level;
     }
 }

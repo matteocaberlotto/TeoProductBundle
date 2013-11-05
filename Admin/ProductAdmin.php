@@ -10,13 +10,17 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Teo\ProductBundle\Form\UploadHelper;
 use Teo\ProductBundle\Form\DataTransformer\ImagesToFileTransformer;
+use Teo\ProductBundle\Form\DataTransformer\CategoryToCollectionTransformer;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\EntityRepository;
 
 class ProductAdmin extends Admin
 {
     protected $um;
 
     protected $unique_category;
+
+    protected $leaf_only;
 
     public function setUniqueCategory()
     {
@@ -26,6 +30,16 @@ class ProductAdmin extends Admin
     public function setUploadManager($uploadManager)
     {
         $this->um = $uploadManager;
+    }
+
+    public function setLeafOnly()
+    {
+        $this->leaf_only = true;
+    }
+
+    public function setMaximumDepth($depth)
+    {
+        $this->maximum_depth = $depth;
     }
 
     // Fields to be shown on create/edit forms
@@ -53,11 +67,33 @@ class ProductAdmin extends Admin
             )
         ;
 
+        // $categoriesFieldConfig = array(
+        //     'required' => false,
+        //     'class' => 'Teo\ProductBundle\Entity\Category'
+        // );
+
+        if ($this->leaf_only) {
+            $depth = $this->maximum_depth;
+            $categoriesFieldConfig['query_builder'] = function (EntityRepository $er) use ($depth) {
+                return $er->createQueryBuilder('c')
+                    ->where('c.level = :level')
+                    ->setParameter('level', $depth)
+                    ;
+            };
+        }
+
+        // $type = null;
         if ($this->unique_category) {
-            $formMapper->add('categories', 'entity', array(
-                'class' => 'Teo\ProductBundle\Entity\Category',
-                'property' => 'title'
-            ));
+
+            $category = $this->getSubject()->getCategories();
+
+            $formMapper->add(
+                $formMapper->create('categories', 'entity', array(
+                    'class' => 'Teo\ProductBundle\Entity\Category',
+                    'property' => 'title',
+                    'data' => $category->first()
+                ))->addModelTransformer(new CategoryToCollectionTransformer)
+            );
         } else {
             $formMapper->add('categories');
         }
@@ -99,34 +135,5 @@ class ProductAdmin extends Admin
                 return parent::getTemplate($name);
                 break;
         }
-    }
-
-    public function postUpdate($product)
-    {
-        foreach ($product->getCategories() as $c) {
-            var_dump($c->getTitle());
-        }
-
-        // foreach ($product->getCategories() as $c) {
-        //     $c->addProduct($product);
-        // }
-
-        $this->getModelManager()->update($product);
-
-        // die();
-    }
-
-    public function preUpdate($product)
-    {
-        // foreach ($product->getCategories() as $c) {
-        //         var_dump($c->getTitle());
-        // }
-        // die();
-        // $this->getModelManager()->getEntityManager($product)->flush();
-    }
-
-    public function prePersist($product)
-    {
-        // $this->getModelManager()->getEntityManager($product)->flush();
     }
 }

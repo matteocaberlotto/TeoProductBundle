@@ -37,8 +37,11 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('unique_category')
                     ->defaultValue(false)
                 ->end()
-                ->scalarNode('maximum_nesting')
+                ->scalarNode('maximum_depth')
                     ->defaultValue(2)
+                ->end()
+                ->scalarNode('leaf_only')
+                    ->defaultValue(false)
                 ->end()
             ->end()
             ;

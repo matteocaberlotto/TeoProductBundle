@@ -36,7 +36,7 @@ class CategoryCRUDController extends CRUDController
             'csrf_token' => $this->getCsrfToken('sonata.batch'),
             'root_categories' => $rootCategories,
             'show_products' => $this->container->getParameter('teo_product.show_products'),
-            'max_nesting' => $this->container->getParameter('teo_product.maximum_nesting')
+            'max_depth' => $this->container->getParameter('teo_product.maximum_depth')
         ));
     }
 

@@ -5,10 +5,15 @@
       <generator strategy="AUTO"/>
     </id>
 
-        <one-to-many field="categories" target-entity="Teo\ProductBundle\Entity\Category" mapped-by="parent" />
+    <one-to-many field="categories" target-entity="Teo\ProductBundle\Entity\Category" mapped-by="parent"/>
 
-        <many-to-one field="parent" target-entity="Teo\ProductBundle\Entity\Category" inversed-by="categories" />
+    <many-to-one field="parent" target-entity="Teo\ProductBundle\Entity\Category" inversed-by="categories"/>
 
-        <many-to-many field="products" target-entity="Teo\ProductBundle\Entity\Product" mapped-by="categories"/>
+    <many-to-many field="products" target-entity="Teo\ProductBundle\Entity\Product" mapped-by="categories"/>
+
+    <lifecycle-callbacks>
+      <lifecycle-callback type="prePersist" method="setCurrentLevel"/>
+      <lifecycle-callback type="preUpdate" method="setCurrentLevel"/>
+    </lifecycle-callbacks>
   </entity>
 </doctrine-mapping>

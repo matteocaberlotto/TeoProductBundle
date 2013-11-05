@@ -31,11 +31,19 @@ class TeoProductExtension extends Extension
         }
 
         $container->setParameter('teo_product.show_products', $config['show_products']);
-        $container->setParameter('teo_product.maximum_nesting', $config['maximum_nesting']);
+
+        $container->setParameter('teo_product.maximum_depth', $config['maximum_depth']);
+        $container->getDefinition('sonata.admin.product')->addMethodCall('setMaximumDepth', array($config['maximum_depth']));
 
         if ($config['unique_category']) {
             $container->getDefinition('sonata.admin.category')->addMethodCall('setUniqueCategory');
             $container->getDefinition('sonata.admin.product')->addMethodCall('setUniqueCategory');
         }
+
+        if ($config['leaf_only']) {
+            $container->getDefinition('sonata.admin.product')->addMethodCall('setLeafOnly');
+        }
+
+
     }
 }
