@@ -1,12 +1,8 @@
 <li>
     <small>
         <i class="icon-arrow-right"></i>
-        {#
-        <a class="product" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
-        #}
-            {{ product.getTitle() }}
-        {#
-        </a>
-        #}
+            <a class="product alert-warning" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
+                {{ product.getTitle() }}
+            </a>
     </small>
 </li>
