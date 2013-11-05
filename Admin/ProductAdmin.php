@@ -67,11 +67,6 @@ class ProductAdmin extends Admin
             )
         ;
 
-        // $categoriesFieldConfig = array(
-        //     'required' => false,
-        //     'class' => 'Teo\ProductBundle\Entity\Category'
-        // );
-
         if ($this->leaf_only) {
             $depth = $this->maximum_depth;
             $categoriesFieldConfig['query_builder'] = function (EntityRepository $er) use ($depth) {
@@ -91,11 +86,14 @@ class ProductAdmin extends Admin
                 $formMapper->create('categories', 'entity', array(
                     'class' => 'Teo\ProductBundle\Entity\Category',
                     'property' => 'title',
-                    'data' => $category->first()
+                    'data' => $category->first(),
+                    'required' => false
                 ))->addModelTransformer(new CategoryToCollectionTransformer)
             );
         } else {
-            $formMapper->add('categories');
+            $formMapper->add('categories', null, array(
+                'required' => false
+            ));
         }
     }
 
