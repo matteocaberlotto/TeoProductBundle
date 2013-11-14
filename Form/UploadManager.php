@@ -16,7 +16,12 @@ class UploadManager
 
     public function getUploadRootDir()
     {
-        return $this->base_path . '/web/' . $this->getUploadDir();
+        return $this->getWebDir() . DIRECTORY_SEPARATOR . $this->getUploadDir();
+    }
+
+    public function getWebDir()
+    {
+        return $this->base_path . '/web';
     }
 
     protected function getUploadDir()
@@ -38,7 +43,7 @@ class UploadManager
         );
 
         // set the path property to the filename where you've saved the file
-        $image->setPath($cleanName);
+        $image->setPath(DIRECTORY_SEPARATOR . $this->getUploadDir() . DIRECTORY_SEPARATOR . $cleanName);
     }
 
     public function uploadFile($file) {

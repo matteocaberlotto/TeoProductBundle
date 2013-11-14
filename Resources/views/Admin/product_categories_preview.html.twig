@@ -1,7 +1,7 @@
 <td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
 
     {% if value is not empty %}
-        <img style="width: 100px;" src="/uploads/documents/{{ value.first().getPath() }}" />
+        <img style="width: 100px;" src="{{ value.first().getPath() }}" />
     {% endif %}
 
 </td>

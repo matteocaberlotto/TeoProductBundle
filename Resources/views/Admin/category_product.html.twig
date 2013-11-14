@@ -2,6 +2,9 @@
     <small>
         <i class="icon-arrow-right"></i>
             <a class="product alert-warning" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
+                {% if product.hasPreview() %}
+                    <img style="width:50px;" src="{{ product.getPreview().getPath() }}" />
+                {% endif %}
                 {{ product.getTitle() }}
             </a>
     </small>
