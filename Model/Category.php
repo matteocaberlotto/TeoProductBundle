@@ -3,6 +3,8 @@
 namespace Teo\ProductBundle\Model;
 
 use Teo\ProductBundle\Model\Category;
+use Doctrine\Common\Collections\ArrayCollection;
+use Teo\ProductBundle\Model\Tag;
 
 class Category
 {
@@ -17,7 +19,7 @@ class Category
     protected $title;
 
     /**
-     * @var \Teo\ProductBundle\Model\Category
+     * @var Category
      */
     protected $parent;
 
@@ -35,6 +37,13 @@ class Category
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $categories;
+
+    protected $tags;
+
+    public function __construct() {
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -77,10 +86,10 @@ class Category
     /**
      * Set parent
      *
-     * @param \Teo\ProductBundle\Model\Category $parent
+     * @param Category $parent
      * @return Category
      */
-    public function setParent(\Teo\ProductBundle\Model\Category $parent = null)
+    public function setParent(Category $parent = null)
     {
         $this->parent = $parent;
     
@@ -90,7 +99,7 @@ class Category
     /**
      * Get parent
      *
-     * @return \Teo\ProductBundle\Model\Category 
+     * @return Category 
      */
     public function getParent()
     {
@@ -146,10 +155,10 @@ class Category
     /**
      * Add categories
      *
-     * @param \Teo\ProductBundle\Model\Category $categories
+     * @param Category $categories
      * @return Category
      */
-    public function addCategories(\Teo\ProductBundle\Model\Category $categories)
+    public function addCategories(Category $categories)
     {
         $this->categories[] = $categories;
     
@@ -159,9 +168,9 @@ class Category
     /**
      * Remove categories
      *
-     * @param \Teo\ProductBundle\Model\Category $categories
+     * @param Category $categories
      */
-    public function removeCategories(\Teo\ProductBundle\Model\Category $categories)
+    public function removeCategories(Category $categories)
     {
         $this->categories->removeElement($categories);
     }
@@ -231,5 +240,37 @@ class Category
         }
 
         return $level;
+    }
+    /**
+     * Add tags
+     *
+     * @param \Teo\ProductBundle\Model\Tag $tags
+     * @return Bookmark
+     */
+    public function addTag(\Teo\ProductBundle\Model\Tag $tags)
+    {
+        $this->tags[] = $tags;
+    
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \Teo\ProductBundle\Model\Tag $tags
+     */
+    public function removeTag(\Teo\ProductBundle\Model\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 }
