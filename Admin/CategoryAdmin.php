@@ -29,7 +29,8 @@ class CategoryAdmin extends Admin
                 $formMapper->create('tags', 'text', array(
                     'data' => $this->getSubject()->getTags(),
                     'data_class' => null,
-                    'label' => 'TAGS:'
+                    'label' => 'TAGS:',
+                    'required' => false
                 ))->addModelTransformer($tagsTransformer)
             )
         ;
