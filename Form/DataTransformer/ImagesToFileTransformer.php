@@ -37,7 +37,7 @@ class ImagesToFileTransformer implements DataTransformerInterface
 
         $return = array();
         foreach ($images as $image) {
-            $return []= new File($this->uploadManager->getUploadRootDir() . "/" . $image->getPath());
+            $return []= new File($this->uploadManager->getWebDir() . $image->getPath());
         }
 
         return $return;

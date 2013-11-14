@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Teo\ProductBundle\Form\DataTransformer\TagsToStringTransformer;
 
 class CategoryAdmin extends Admin
 {
@@ -19,9 +20,18 @@ class CategoryAdmin extends Admin
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $tagsTransformer = new TagsToStringTransformer($this->getModelManager());
+
         $formMapper
             ->add('title')
             ->add('parent')
+            ->add(
+                $formMapper->create('tags', 'text', array(
+                    'data' => $this->getSubject()->getTags(),
+                    'data_class' => null,
+                    'label' => 'TAGS:'
+                ))->addModelTransformer($tagsTransformer)
+            )
         ;
     }
 

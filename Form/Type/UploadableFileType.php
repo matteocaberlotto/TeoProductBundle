@@ -17,8 +17,11 @@ class UploadableFileType extends AbstractType
     {
         $label = 'image';
         if (is_object($view->vars['value'])) {
-            $label = $view->vars['value']->getFilename();
-            $label = sprintf('<img src="/uploads/documents/%s" /> %s', $label, $label);
+            // FIXME:
+            $path = $view->vars['value']->getPathname();
+            $marker = '/uploads/';
+            $path = substr($path, strpos($path, $marker));
+            $label = sprintf('<img src="%s" />', $path);
         }
 
         $view->vars = array_replace($view->vars, array(
