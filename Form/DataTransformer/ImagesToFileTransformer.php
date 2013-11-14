@@ -63,8 +63,14 @@ class ImagesToFileTransformer implements DataTransformerInterface
         $position = 0;
         foreach ($images as $image) {
 
-            $position++;
-            if (is_null($image)) {
+            if (isset($_POST['delete_images'][$position]) && $_POST['delete_images'][$position] == 'on') {
+                // delete image and continue
+
+                $imageObject = $this->modelManager
+                    ->findOneBy('TeoProductBundle:Image', array('position' => $position, 'product' => $this->product))
+                ;
+                $this->modelManager->getEntityManager($imageObject)->remove($imageObject);
+                $position++;
                 continue;
             }
 
@@ -76,18 +82,39 @@ class ImagesToFileTransformer implements DataTransformerInterface
                 ;
             }
 
+            // if there's no content, there's no update to filepath, just update position and continue
+            if (is_null($image)) {
+                if ($imageObject) {
+                    $imageObject->setPosition($position);
+                    $imagesCollection->add($imageObject);
+                }
+                $position++;
+                continue;
+            }
+
             if (null === $imageObject) {
                 $imageObject = new Image;
                 $imageObject->setProduct($this->product);
+                $imageObject->setPosition($position);
                 $this->modelManager->getEntityManager($imageObject)->persist($imageObject);
             }
 
             $this->uploadManager->upload($imageObject, $image);
 
-            $imageObject->setPosition($position);
-
             $imagesCollection->add($imageObject);
+            $position++;
         }
+
+        // force update positions
+        $counter = 0;
+        foreach ($imagesCollection as $img) {
+            var_dump($img->getId());
+            var_dump($counter);
+            $img->setPosition($counter);
+            $counter++;
+        }
+
+        $this->modelManager->getEntityManager('Teo\ProductBundle\Entity\Image')->flush();
 
         return $imagesCollection;
     }

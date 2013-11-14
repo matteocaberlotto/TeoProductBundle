@@ -2,6 +2,13 @@
 {% spaceless %}
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+
+    <label style="display:inline" for="delete_{{ name }}">
+        <input style="margin-top:-3px" id="delete_{{ name }}" name="delete_images[{{ name }}]" type="checkbox" />
+        REMOVE
+    </label>
+
+    {# {{ form_row(delete_image) }} #}
 {% endspaceless %}
 {% endblock %}
 
