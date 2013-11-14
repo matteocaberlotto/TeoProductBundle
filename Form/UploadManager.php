@@ -41,6 +41,21 @@ class UploadManager
         $image->setPath($cleanName);
     }
 
+    public function uploadFile($file) {
+        // use the original file name here but you should
+        // sanitize it at least to avoid any security issues
+        $cleanName = $this->cleanFileName($file);
+
+        // move takes the target directory and then the
+        // target filename to move to
+        $file->move(
+            $this->getUploadRootDir(),
+            $cleanName
+        );
+
+        return $this->getUploadRootDir() . "/" . $cleanName;
+    }
+
     public function cleanFileName($file)
     {
         $name = $file->getClientOriginalName();
