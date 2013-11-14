@@ -108,13 +108,9 @@ class ImagesToFileTransformer implements DataTransformerInterface
         // force update positions
         $counter = 0;
         foreach ($imagesCollection as $img) {
-            var_dump($img->getId());
-            var_dump($counter);
             $img->setPosition($counter);
             $counter++;
         }
-
-        $this->modelManager->getEntityManager('Teo\ProductBundle\Entity\Image')->flush();
 
         return $imagesCollection;
     }
