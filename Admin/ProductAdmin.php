@@ -113,7 +113,7 @@ class ProductAdmin extends Admin
         $listMapper
             ->add('images', null, array(
                 'label' => 'Preview',
-                'template' => 'TeoProductBundle:Admin:product_categories_preview.html.twig'
+                'template' => 'TeoProductBundle:Admin:product_preview.html.twig'
             ))
             ->addIdentifier('title')
             ->add('description')
