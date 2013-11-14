@@ -80,11 +80,13 @@ class ImagesToFileTransformer implements DataTransformerInterface
                 $imageObject = new Image;
                 $imageObject->setProduct($this->product);
                 $this->modelManager->getEntityManager($imageObject)->persist($imageObject);
-                $imagesCollection->add($imageObject);
             }
 
-            $imageObject->setPosition($position);
             $this->uploadManager->upload($imageObject, $image);
+
+            $imageObject->setPosition($position);
+
+            $imagesCollection->add($imageObject);
         }
 
         return $imagesCollection;
