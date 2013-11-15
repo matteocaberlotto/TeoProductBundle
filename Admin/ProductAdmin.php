@@ -85,7 +85,7 @@ class ProductAdmin extends Admin
             $formMapper->add(
                 $formMapper->create('categories', 'entity', array(
                     'class' => 'Teo\ProductBundle\Entity\Category',
-                    'property' => 'title',
+                    'property' => 'pathString',
                     'data' => $category->first(),
                     'required' => false
                 ))->addModelTransformer(new CategoryToCollectionTransformer)

@@ -269,6 +269,26 @@ class Category
 
         return $level;
     }
+
+    public function getPath()
+    {
+        $path = array(ucfirst($this->getTitle()));
+
+        $current = $this;
+
+        while ($current->getParent() instanceof Category) {
+            $current = $current->getParent();
+            $path []= ucfirst($current->getTitle());
+        }
+
+        return array_reverse($path);
+    }
+
+    public function getPathString()
+    {
+        return implode(' > ', $this->getPath());
+    }
+
     /**
      * Add tags
      *
