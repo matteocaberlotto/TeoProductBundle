@@ -5,6 +5,7 @@
     <mapped-superclass name="Teo\ProductBundle\Model\Category">
         <field name="title" type="string" column="title" length="255"/>
         <field name="level" type="integer" />
+        <field name="position" type="integer" />
     </mapped-superclass>
 
 </doctrine-mapping>

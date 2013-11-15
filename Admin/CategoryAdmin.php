@@ -7,6 +7,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Teo\ProductBundle\Form\DataTransformer\TagsToStringTransformer;
+use Sonata\AdminBundle\Route\RouteCollection;
+
 
 class CategoryAdmin extends Admin
 {
@@ -25,6 +27,9 @@ class CategoryAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('parent')
+            ->add('position', null, array(
+                'required' => false
+            ))
             ->add(
                 $formMapper->create('tags', 'text', array(
                     'data' => $this->getSubject()->getTags(),
@@ -64,5 +69,10 @@ class CategoryAdmin extends Admin
                 return parent::getTemplate($name);
                 break;
         }
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('reorder');
     }
 }

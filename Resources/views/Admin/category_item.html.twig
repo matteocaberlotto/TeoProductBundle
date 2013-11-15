@@ -1,4 +1,4 @@
-<li>
+<li class="cat" data-id="{{ object.getId() }}">
     <span>
         <i class="icon-folder-open"></i>
         <a class="category" href="{{ admin.generateObjectUrl('edit', object) }}">
@@ -9,11 +9,17 @@
     <a title="Edit category" class="btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('edit', object) }}">
         <i class="icon-pencil icon-white"></i>
     </a>
+
     {% if level < max_depth %}
     <a title="Add child category" class="btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('create', object, { "parent": object.getId() }) }}">
         <i class="icon-plus icon-white"></i>
     </a>
     {% endif %}
+
+    <a title="Reorder category" class="btn btn-mini btn-primary reorder" href="javascript:;">
+        <i class="icon-resize-vertical icon-white"></i>
+    </a>
+
     <a title="Remove category" class="btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('delete', object) }}">
         <i class="icon-remove icon-white"></i>
     </a>
@@ -22,7 +28,7 @@
     {% if object.hasChildren() %}
 
     {% set childLevel = level + 1 %}
-    <ul>
+    <ul class="cat-list">
         {% for child in object.getCategories() %}
             {% include 'TeoProductBundle:Admin:category_item.html.twig' with { "object": child, "level": childLevel } %}
         {% endfor %}

@@ -38,7 +38,7 @@
                     <tbody>
                             <tr>
                                 <td>
-                                    <ul class="categories-tree">
+                                    <ul class="categories-tree cat-list">
                                     {% for object in root_categories %}
                                         {% include 'TeoProductBundle:Admin:category_item.html.twig' with { "object": object, "level": 1 } %}
                                     {% endfor %}
@@ -114,6 +114,7 @@
                 #}
                 {% endblock %}
             </table>
+            {% include 'TeoProductBundle:Admin:_category_sortable_js.html.twig' %}
         {% if admin.hasRoute('batch') %}
         </form>
         {% endif %}

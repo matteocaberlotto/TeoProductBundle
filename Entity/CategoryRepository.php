@@ -34,4 +34,19 @@ class CategoryRepository extends EntityRepository
             ;
         return $q;
     }
+
+    public function reorder($ids)
+    {
+        if (count($ids) == 0) {
+            return;
+        }
+
+        $counter = 0;
+        foreach ($ids as $id) {
+            $this->find($id)->setPosition($counter);
+            $counter++;
+        }
+
+        $this->_em->flush();
+    }
 }

@@ -3,6 +3,7 @@
 namespace Teo\ProductBundle\Controller;
 
 use Sonata\AdminBundle\Controller\CRUDController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CategoryCRUDController extends CRUDController
 {
@@ -112,5 +113,12 @@ class CategoryCRUDController extends CRUDController
             'form'   => $view,
             'object' => $object,
         ));
+    }
+
+    public function reorderAction()
+    {
+        $ids = $this->getRequest()->get('ids');
+        $this->getDoctrine()->getRepository('TeoProductBundle:Category')->reorder($ids);
+        return new JsonResponse(array('result' => true), 200);
     }
 }

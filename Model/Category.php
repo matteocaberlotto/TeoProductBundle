@@ -24,6 +24,11 @@ class Category
     protected $parent;
 
     /**
+     * @var integer
+     */
+    protected $position;
+
+    /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $products;
@@ -61,7 +66,30 @@ class Category
     }
 
     /**
-     * Set name
+     * Set position
+     *
+     * @param string $position
+     * @return Category
+     */
+    public function setPosition($position)
+    {
+        $this->position = $position;
+    
+        return $this;
+    }
+
+    /**
+     * Get position
+     *
+     * @return string
+     */
+    public function getPosition()
+    {
+        return $this->position;
+    }
+
+    /**
+     * Set title
      *
      * @param string $title
      * @return Category
@@ -74,7 +102,7 @@ class Category
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string 
      */
