@@ -1,11 +1,13 @@
 <li class="prod">
     <small>
-        <i class="icon-arrow-right"></i>
-            <a class="product alert-warning" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
-                {% if product.hasPreview() %}
-                    <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
-                {% endif %}
-                {{ product.getTitle() }}
-            </a>
+        {% if not product.hasPreview() %}
+            <i class="icon-barcode"></i>
+        {% endif %}
+        <a class="product alert-warning" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
+            {% if product.hasPreview() %}
+                <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
+            {% endif %}
+            {{ product.getTitle() }}
+        </a>
     </small>
 </li>
