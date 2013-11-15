@@ -273,4 +273,17 @@ class Category
     {
         return $this->tags;
     }
+
+    /**
+     * Set tags
+     *
+     * @return Category
+     */
+    public function setTags($tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
 }
