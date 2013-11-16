@@ -4,6 +4,7 @@
 
     <mapped-superclass name="Teo\ProductBundle\Model\Category">
         <field name="title" type="string" column="title" length="255"/>
+        <field name="slug" type="string" column="slug" length="255" unique="true" nullable="true"/>
         <field name="level" type="integer" />
         <field name="position" type="integer" nullable="true" />
     </mapped-superclass>

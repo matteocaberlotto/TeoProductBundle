@@ -19,6 +19,11 @@ class Product
     /**
      * @var string
      */
+    protected $slug;
+
+    /**
+     * @var string
+     */
     protected $description;
 
     /**
@@ -92,6 +97,29 @@ class Product
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Product
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

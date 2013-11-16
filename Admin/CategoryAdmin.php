@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Teo\ProductBundle\Form\DataTransformer\TagsToStringTransformer;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Teo\ProductBundle\SlugGenerator;
 
 
 class CategoryAdmin extends Admin
@@ -27,6 +28,9 @@ class CategoryAdmin extends Admin
         $formMapper
             ->add('title')
             ->add('parent')
+            ->add('slug', null, array(
+                'required' => false
+            ))
             ->add('position', null, array(
                 'required' => false
             ))
@@ -74,5 +78,40 @@ class CategoryAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('reorder');
+    }
+
+    public function prePersist($category)
+    {
+        $this->updateSlug($category);
+    }
+
+    public function preUpdate($category)
+    {
+        $this->updateSlug($category);
+    }
+
+    public function updateSlug($category)
+    {
+        $slug = $category->getSlug();
+
+        if (empty($slug)) {
+
+            $title = $category->getTitle();
+
+            $inc = 0;
+            $collision = array(true);
+
+            while (count($collision)) {
+                $slug = SlugGenerator::generate($title, $inc);
+
+                $collision = $this->getModelManager()->findOneBy('TeoProductBundle:Category', array(
+                    'slug' => $slug
+                ));
+
+                $inc++;
+            }
+
+            $category->setSlug($slug);
+        }
     }
 }

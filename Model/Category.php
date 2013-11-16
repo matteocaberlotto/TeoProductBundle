@@ -19,6 +19,12 @@ class Category
     protected $title;
 
     /**
+     * @var string
+     */
+    protected $slug;
+
+
+    /**
      * @var Category
      */
     protected $parent;
@@ -109,6 +115,29 @@ class Category
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Category
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**

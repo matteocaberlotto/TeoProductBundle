@@ -13,6 +13,7 @@ use Teo\ProductBundle\Form\DataTransformer\ImagesToFileTransformer;
 use Teo\ProductBundle\Form\DataTransformer\CategoryToCollectionTransformer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
+use Teo\ProductBundle\SlugGenerator;
 
 class ProductAdmin extends Admin
 {
@@ -53,6 +54,9 @@ class ProductAdmin extends Admin
             ))
             ->add('description', 'text', array(
                 'label' => 'Product description',
+                'required' => false
+            ))
+            ->add('slug', null, array(
                 'required' => false
             ))
             ->add(
@@ -132,6 +136,41 @@ class ProductAdmin extends Admin
             default:
                 return parent::getTemplate($name);
                 break;
+        }
+    }
+
+    public function prePersist($product)
+    {
+        $this->updateSlug($product);
+    }
+
+    public function preUpdate($product)
+    {
+        $this->updateSlug($product);
+    }
+
+    public function updateSlug($product)
+    {
+        $slug = $product->getSlug();
+
+        if (empty($slug)) {
+
+            $title = $product->getTitle();
+
+            $inc = 0;
+            $collision = array(true);
+
+            while (count($collision)) {
+                $slug = SlugGenerator::generate($title, $inc);
+
+                $collision = $this->getModelManager()->findOneBy('TeoProductBundle:Product', array(
+                    'slug' => $slug
+                ));
+
+                $inc++;
+            }
+
+            $product->setSlug($slug);
         }
     }
 }
