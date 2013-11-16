@@ -7,7 +7,7 @@
 
     <one-to-many field="categories" target-entity="Teo\ProductBundle\Entity\Category" mapped-by="parent">
       <order-by>
-          <order-by-field name="position" direction="ASC" />
+        <order-by-field name="position" direction="ASC" />
       </order-by>
     </one-to-many>
 

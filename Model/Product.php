@@ -42,6 +42,11 @@ class Product
     protected $categories;
 
     /**
+     * @var array
+     */
+    private $extras;
+
+    /**
      * @var \DateTime
      */
     protected $created;
@@ -346,5 +351,43 @@ class Product
     public function getPreview()
     {
         return $this->images[0];
+    }
+
+    /**
+     * Set extras
+     *
+     * @param array $extras
+     * @return Product
+     */
+    public function setExtras($extras)
+    {
+        $this->extras = $extras;
+    
+        return $this;
+    }
+
+    /**
+     * Get extra
+     *
+     * @return array 
+     */
+    public function getExtras()
+    {
+        return $this->extras;
+    }
+
+    public function getExtra($key)
+    {
+        if (isset($this->extras[$key])) {
+            return $this->extras[$key];
+        }
+        return false;
+    }
+
+    public function setExtra($key, $value)
+    {
+        $this->extras[$key] = $value;
+
+        return $this;
     }
 }

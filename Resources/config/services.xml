@@ -7,11 +7,15 @@
 
     <parameters>
         <parameter key="teo_product.uploadable.type.class">Teo\ProductBundle\Form\Type\UploadableFileType</parameter>
+        <parameter key="teo_product.colorpicker.type.class">Teo\ProductBundle\Form\Type\ColorpickerType</parameter>
     </parameters>
 
     <services>
         <service id="teo_product.uploadable.type" class="%teo_product.uploadable.type.class%">
             <tag name="form.type" alias="uploadable_file" />
+        </service>
+        <service id="teo_product.colorpicker.type" class="%teo_product.colorpicker.type.class%">
+            <tag name="form.type" alias="colorpicker" />
         </service>
     </services>
 

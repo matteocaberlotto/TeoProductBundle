@@ -45,6 +45,11 @@ class Category
     protected $level;
 
     /**
+     * @var array category custom extra options
+     */
+    protected $options;
+
+    /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
     protected $categories;
@@ -363,4 +368,42 @@ class Category
         return $this;
     }
 
+
+    /**
+     * Set options
+     *
+     * @param array $options
+     * @return Category
+     */
+    public function setOptions($options)
+    {
+        $this->options = $options;
+    
+        return $this;
+    }
+
+    /**
+     * Get options
+     *
+     * @return array 
+     */
+    public function getOptions()
+    {
+        return $this->options;
+    }
+
+    public function getOption($key)
+    {
+        if (isset($this->options[$key])) {
+            return $this->options[$key];
+        }
+        return false;
+    }
+
+    public function setOption($key, $value)
+    {
+        $this->option[$key] = $value;
+
+        return $this;
+    }
 }

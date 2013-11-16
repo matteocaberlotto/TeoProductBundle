@@ -23,9 +23,27 @@ class ProductAdmin extends Admin
 
     protected $leaf_only;
 
+    protected $product_extra_options;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
+    }
+
+    public function setExtraOptions($options)
+    {
+        $this->product_extra_options = $options;
+    }
+
+    protected function provideOptionsKeys()
+    {
+        $extra = array();
+        foreach ($this->product_extra_options as $name => $opt) {
+            $extra []= array(
+                $name, $opt['type'], array()
+            );
+        }
+        return $extra;
     }
 
     public function setUploadManager($uploadManager)
@@ -58,6 +76,14 @@ class ProductAdmin extends Admin
             ))
             ->add('slug', null, array(
                 'required' => false
+            ))
+            ->add('extras', 'sonata_type_immutable_array', array(
+                    'keys' => $this->provideOptionsKeys(),
+                    'required' => false,
+                    'data' => $this->getSubject()->getExtras(),
+                    'attr' => array(
+                        'class' => 'product_extras'
+                    )
             ))
             ->add(
                 $formMapper->create('images', 'collection', array(

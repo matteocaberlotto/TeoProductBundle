@@ -10,7 +10,7 @@
 
     {# {{ form_row(delete_image) }} #}
 {% endspaceless %}
-{% endblock %}
+{% endblock uploadable_file_widget %}
 
 {% block uploadable_file_label %}
 {% spaceless %}
@@ -51,4 +51,37 @@
         {% endif %}
     {% endif %}
 {% endspaceless %}
-{% endblock %}
+{% endblock uploadable_file_label %}
+
+{% block colorpicker_widget %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <div id="sample_{{ id }}" style="{% if value is not empty %}background:{{value}};{% endif %}width:20px;height:20px;border:solid 1px #000;float: left;margin:4px 10px;"></div>
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <script>
+    $("#sample_{{ id }}").ColorPicker({
+        onChange: function (hsb, hex, rgb) {
+            $("#sample_{{ id }}").css('background', '#' + hex);
+            $("#{{ id }}").val('#' + hex);
+        }
+    });
+    </script>
+{% endspaceless %}
+{% endblock colorpicker_widget %}
+
+{% block colorpicker_label %}
+{% spaceless %}
+    {% if label is not sameas(false) %}
+        {% if not compound %}
+            {% set label_attr = label_attr|merge({'for': id}) %}
+        {% endif %}
+        {% if required %}
+            {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+        {% endif %}
+        {% if label is empty %}
+            {% set label = name|humanize %}
+        {% endif %}
+        <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+    {% endif %}
+{% endspaceless %}
+{% endblock colorpicker_label %}

@@ -13,11 +13,31 @@ use Teo\ProductBundle\SlugGenerator;
 
 class CategoryAdmin extends Admin
 {
-    protected $unique_category;
+    protected $unique_category, $category_extra_options;
 
     public function setUniqueCategory()
     {
         $this->unique_category = true;
+    }
+
+    public function setExtraOptions($options)
+    {
+        $this->category_extra_options = $options;
+    }
+
+    protected function provideOptionsKeys()
+    {
+        $extra = array();
+        foreach ($this->category_extra_options as $name => $opt) {
+            $extra []= array(
+                $name, $opt['type'], array(
+                    'label' => $name,
+                    'required' => false,
+                    'data' => $this->getSubject()->getOption($name)
+                )
+            );
+        }
+        return $extra;
     }
 
     // Fields to be shown on create/edit forms
@@ -33,6 +53,14 @@ class CategoryAdmin extends Admin
             ))
             ->add('position', null, array(
                 'required' => false
+            ))
+            ->add('options', 'sonata_type_immutable_array', array(
+                    'keys' => $this->provideOptionsKeys(),
+                    'required' => false,
+                    'data' => $this->getSubject()->getOptions(),
+                    'attr' => array(
+                        'class' => 'product_extras'
+                    )
             ))
             ->add(
                 $formMapper->create('tags', 'text', array(
@@ -68,6 +96,9 @@ class CategoryAdmin extends Admin
         switch ($name) {
             case 'list':
                 return 'TeoProductBundle:Admin:categories_listing.html.twig';
+                break;
+            case 'edit':
+                return 'TeoProductBundle:Admin:edit_product.html.twig';
                 break;
             default:
                 return parent::getTemplate($name);

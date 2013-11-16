@@ -57,3 +57,10 @@ ul.categories-tree li.product {
 .sonata-bc .form-horizontal .sonata-collection-row-without-label {
     margin-left: 200px;
 }
+
+.product_extras label {
+    float: left;
+    margin-top: 4px;
+    text-align: right;
+    width: 180px;
+}
