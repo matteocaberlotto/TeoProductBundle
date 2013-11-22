@@ -17,6 +17,7 @@ class ColorpickerType extends AbstractType
     {
         $resolver->setDefaults(array(
             'empty_data' => null,
+            'help' => null
         ));
     }
 

@@ -40,7 +40,7 @@ class ProductAdmin extends Admin
         $extra = array();
         foreach ($this->product_extra_options as $name => $opt) {
             $extra []= array(
-                $name, $opt['type'], array()
+                $name, $opt['type'], $opt['options']
             );
         }
         return $extra;
@@ -68,14 +68,17 @@ class ProductAdmin extends Admin
 
         $formMapper
             ->add('title', 'text', array(
-                'label' => 'Product title'
+                'label' => 'Product title',
+                'help' => 'Name of the product'
             ))
             ->add('description', 'text', array(
                 'label' => 'Product description',
-                'required' => false
+                'required' => false,
+                'help' => 'Description of the product'
             ))
             ->add('slug', null, array(
-                'required' => false
+                'required' => false,
+                'help' => 'Human readable suffix for urls'
             ))
             ->add('extras', 'sonata_type_immutable_array', array(
                     'keys' => $this->provideOptionsKeys(),

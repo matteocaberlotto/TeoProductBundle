@@ -30,11 +30,7 @@ class CategoryAdmin extends Admin
         $extra = array();
         foreach ($this->category_extra_options as $name => $opt) {
             $extra []= array(
-                $name, $opt['type'], array(
-                    'label' => $name,
-                    'required' => false,
-                    'data' => $this->getSubject()->getOption($name)
-                )
+                $name, $opt['type'], $opt['options']
             );
         }
         return $extra;

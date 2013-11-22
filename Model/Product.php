@@ -261,6 +261,11 @@ class Product
         return $this->categories;
     }
 
+    public function getCategory()
+    {
+        return $this->categories->first();
+    }
+
     /**
      * Get categories
      *

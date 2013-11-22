@@ -392,12 +392,13 @@ class Category
         return $this->options;
     }
 
-    public function getOption($key)
+    public function getOption($key, $default = false)
     {
         if (isset($this->options[$key])) {
             return $this->options[$key];
         }
-        return false;
+
+        return $default;
     }
 
     public function setOption($key, $value)
