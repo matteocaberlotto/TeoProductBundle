@@ -82,8 +82,9 @@ class ImagesToFileTransformer implements DataTransformerInterface
                 ;
             }
 
+            $relPath = substr($image->getPathname(), strpos($image->getPathname(), '/web') + 4);
             // if there's no content, there's no update to filepath, just update position and continue
-            if (is_null($image)) {
+            if (is_null($image) || (!is_null($imageObject) && $relPath == $imageObject->getPath())) {
                 if ($imageObject) {
                     $imageObject->setPosition($position);
                     $imagesCollection->add($imageObject);
@@ -92,6 +93,7 @@ class ImagesToFileTransformer implements DataTransformerInterface
                 continue;
             }
 
+            // create and save a new image
             if (null === $imageObject) {
                 $imageObject = new Image;
                 $imageObject->setProduct($this->product);
