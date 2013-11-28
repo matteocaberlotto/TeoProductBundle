@@ -71,7 +71,7 @@ class ProductAdmin extends Admin
                 'label' => 'Product title',
                 'help' => 'Name of the product'
             ))
-            ->add('description', 'text', array(
+            ->add('description', 'textarea', array(
                 'label' => 'Product description',
                 'required' => false,
                 'help' => 'Description of the product'
