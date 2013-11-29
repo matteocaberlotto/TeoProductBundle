@@ -3,9 +3,8 @@
 namespace Teo\ProductBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use A2lix\I18nDoctrineBundle\Doctrine\Interfaces\OneLocaleInterface;
 
-class ProductTranslation implements OneLocaleInterface
+class ProductTranslation
 {
 
     /**

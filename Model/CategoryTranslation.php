@@ -5,7 +5,6 @@ namespace Teo\ProductBundle\Model;
 use Teo\ProductBundle\Model\Category;
 use Doctrine\Common\Collections\ArrayCollection;
 use Teo\ProductBundle\Model\Tag;
-use A2lix\I18nDoctrineBundle\Doctrine\Interfaces\OneLocaleInterface;
 
 class CategoryTranslation
 {
