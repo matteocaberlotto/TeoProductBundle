@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity repository-class="Teo\ProductBundle\Entity\ProductRepository" name="Teo\ProductBundle\Entity\Product" vich="true" table="product">
-    <id name="id" type="integer" column="id" vich="true">
+  <entity repository-class="Teo\ProductBundle\Entity\ProductRepository" name="Teo\ProductBundle\Entity\Product" table="product">
+    <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
 
-    <one-to-many field="prices" target-entity="Teo\ProductBundle\Entity\Price" mapped-by="product"/>
+    
 
     <one-to-many field="images" target-entity="Teo\ProductBundle\Entity\Image" mapped-by="product">
       <cascade>

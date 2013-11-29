@@ -9,7 +9,7 @@
             {%- block field %}
                 {% if value is not empty %}
                     {% for category in value %}
-                        <a href="{{ path('admin_teo_product_category_edit', { "id": category.getId() }) }}">{{ category.getTitle()|upper }}</a>
+                        <a href="{{ path('admin_teo_product_category_edit', { "id": category.getId() }) }}">{{ category.title()|upper }}</a>
 
                         {% if not loop.last %}
                             //

@@ -14,22 +14,7 @@ class Product
     /**
      * @var string
      */
-    protected $title;
-
-    /**
-     * @var string
-     */
     protected $slug;
-
-    /**
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    protected $prices;
 
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
@@ -64,11 +49,12 @@ class Product
         $this->prices = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
     {
-        return (string) $this->getTitle();
+        return (string) $this->getSlug();
     }
 
     /**
@@ -79,29 +65,6 @@ class Product
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Product
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -125,62 +88,6 @@ class Product
     public function getSlug()
     {
         return $this->slug;
-    }
-
-    /**
-     * Set description
-     *
-     * @param string $description
-     * @return Product
-     */
-    public function setDescription($description)
-    {
-        $this->description = $description;
-    
-        return $this;
-    }
-
-    /**
-     * Get description
-     *
-     * @return string 
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * Add prices
-     *
-     * @param \Teo\ProductBundle\Model\Price $prices
-     * @return Product
-     */
-    public function addPrice(\Teo\ProductBundle\Model\Price $prices)
-    {
-        $this->prices[] = $prices;
-    
-        return $this;
-    }
-
-    /**
-     * Remove prices
-     *
-     * @param \Teo\ProductBundle\Model\Price $prices
-     */
-    public function removePrice(\Teo\ProductBundle\Model\Price $prices)
-    {
-        $this->prices->removeElement($prices);
-    }
-
-    /**
-     * Get prices
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPrices()
-    {
-        return $this->prices;
     }
 
     /**
@@ -394,5 +301,46 @@ class Product
         $this->extras[$key] = $value;
 
         return $this;
+    }
+
+    /**
+     * Here follows the A2lix bundle trait Translatable
+     */
+
+    public function getTranslations()
+    {
+        return $this->translations = $this->translations ? : new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function setTranslations(\Doctrine\Common\Collections\ArrayCollection $translations)
+    {
+        $this->translations = $translations;
+        return $this;
+    }
+
+    public function addTranslation($translation)
+    {
+        $this->getTranslations()->set($translation->getLocale(), $translation);
+        $translation->setTranslatable($this);
+        return $this;
+    }
+
+    public function removeTranslation($translation)
+    {
+        $this->getTranslations()->removeElement($translation);
+    }
+
+    public function getCurrentTranslation()
+    {
+        return $this->getTranslations()->first();
+    }
+
+    public function __call($method, $args)
+    {
+        return ($translation = $this->getCurrentTranslation()) ?
+                call_user_func(array(
+                    $translation,
+                    'get' . ucfirst($method)
+                )) : '';
     }
 }

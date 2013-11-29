@@ -25,6 +25,8 @@ class ProductAdmin extends Admin
 
     protected $product_extra_options;
 
+    protected $visible_fields;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
@@ -33,6 +35,11 @@ class ProductAdmin extends Admin
     public function setExtraOptions($options)
     {
         $this->product_extra_options = $options;
+    }
+
+    public function setTranslatableFieldsConfig($config)
+    {
+        $this->fields_config = $config;
     }
 
     protected function provideOptionsKeys()
@@ -66,27 +73,23 @@ class ProductAdmin extends Admin
     {
         $imagesToFileTransformer = new ImagesToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
 
+        $formMapper->add('translations', 'a2lix_translations', array(
+            'required' => false,
+            'fields' => $this->fields_config
+        ));
+
         $formMapper
-            ->add('title', 'text', array(
-                'label' => 'Product title',
-                'help' => 'Name of the product'
-            ))
-            ->add('description', 'textarea', array(
-                'label' => 'Product description',
-                'required' => false,
-                'help' => 'Description of the product'
-            ))
             ->add('slug', null, array(
                 'required' => false,
                 'help' => 'Human readable suffix for urls'
             ))
             ->add('extras', 'sonata_type_immutable_array', array(
-                    'keys' => $this->provideOptionsKeys(),
-                    'required' => false,
-                    'data' => $this->getSubject()->getExtras(),
-                    'attr' => array(
-                        'class' => 'product_extras'
-                    )
+                'keys' => $this->provideOptionsKeys(),
+                'required' => false,
+                'data' => $this->getSubject()->getExtras(),
+                'attr' => array(
+                    'class' => 'product_extras'
+                )
             ))
             ->add(
                 $formMapper->create('images', 'collection', array(
@@ -134,8 +137,6 @@ class ProductAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
-            ->add('description')
             ->add('categories')
         ;
     }
@@ -148,8 +149,6 @@ class ProductAdmin extends Admin
                 'label' => 'Preview',
                 'template' => 'TeoProductBundle:Admin:product_preview.html.twig'
             ))
-            ->addIdentifier('title')
-            ->add('description')
             ->add('categories', null, array(
                 'template' => 'TeoProductBundle:Admin:product_categories_field.html.twig'
             ))
@@ -184,7 +183,7 @@ class ProductAdmin extends Admin
 
         if (empty($slug)) {
 
-            $title = $product->getTitle();
+            $title = $product->title();
 
             $inc = 0;
             $collision = array(true);

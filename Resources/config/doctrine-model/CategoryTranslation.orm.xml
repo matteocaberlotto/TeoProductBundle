@@ -2,8 +2,9 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Teo\ProductBundle\Model\Price">
-        <field name="amount" type="string" column="amount" length="255"/>
+    <mapped-superclass name="Teo\ProductBundle\Model\CategoryTranslation">
+        <field name="title" type="string" column="title" length="255" nullable="true"/>
+        <field name="locale" type="string" column="locale" length="10"/>
     </mapped-superclass>
 
 </doctrine-mapping>

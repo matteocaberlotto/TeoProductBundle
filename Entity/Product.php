@@ -10,4 +10,14 @@ use Teo\ProductBundle\Model\Product as BaseProduct;
  */
 class Product extends BaseProduct
 {
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $translations;
+
+    public static function getTranslationEntityClass()
+    {
+        return __CLASS__ . 'Translation';
+    }
 }

@@ -7,7 +7,7 @@
             {% if product.hasPreview() %}
                 <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
             {% endif %}
-            {{ product.getTitle() }}
+            {{ product.title() }}
         </a>
     </small>
 </li>

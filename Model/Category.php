@@ -16,11 +16,6 @@ class Category
     /**
      * @var string
      */
-    protected $title;
-
-    /**
-     * @var string
-     */
     protected $slug;
 
 
@@ -59,11 +54,12 @@ class Category
     public function __construct() {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
     {
-        return (string) $this->title;
+        return (string) $this->getSlug();
     }
 
     /**
@@ -97,29 +93,6 @@ class Category
     public function getPosition()
     {
         return $this->position;
-    }
-
-    /**
-     * Set title
-     *
-     * @param string $title
-     * @return Category
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    
-        return $this;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string 
-     */
-    public function getTitle()
-    {
-        return $this->title;
     }
 
     /**
@@ -306,13 +279,13 @@ class Category
 
     public function getPath()
     {
-        $path = array(ucfirst($this->getTitle()));
+        $path = array(ucfirst($this->getSlug()));
 
         $current = $this;
 
         while ($current->getParent() instanceof Category) {
             $current = $current->getParent();
-            $path []= ucfirst($current->getTitle());
+            $path []= ucfirst($current->getSlug());
         }
 
         return array_reverse($path);
@@ -406,5 +379,46 @@ class Category
         $this->option[$key] = $value;
 
         return $this;
+    }
+
+    /**
+     * Here follows the A2lix bundle trait Translatable
+     */
+
+    public function getTranslations()
+    {
+        return $this->translations = $this->translations ? : new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function setTranslations(\Doctrine\Common\Collections\ArrayCollection $translations)
+    {
+        $this->translations = $translations;
+        return $this;
+    }
+
+    public function addTranslation($translation)
+    {
+        $this->getTranslations()->set($translation->getLocale(), $translation);
+        $translation->setTranslatable($this);
+        return $this;
+    }
+
+    public function removeTranslation($translation)
+    {
+        $this->getTranslations()->removeElement($translation);
+    }
+
+    public function getCurrentTranslation()
+    {
+        return $this->getTranslations()->first();
+    }
+
+    public function __call($method, $args)
+    {
+        return ($translation = $this->getCurrentTranslation()) ?
+                call_user_func(array(
+                    $translation,
+                    'get' . ucfirst($method)
+                )) : '';
     }
 }

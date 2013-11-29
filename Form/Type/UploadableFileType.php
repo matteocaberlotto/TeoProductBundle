@@ -48,7 +48,7 @@ class UploadableFileType extends AbstractType
         $resolver->setDefaults(array(
             'compound' => false,
             'data_class' => 'Symfony\Component\HttpFoundation\File\File',
-            'empty_data' => null,
+            'empty_data' => null
         ));
     }
 

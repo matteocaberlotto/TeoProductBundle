@@ -49,4 +49,15 @@ class CategoryRepository extends EntityRepository
 
         $this->_em->flush();
     }
+
+    // public function find($id)
+    // {
+    //     $q = $this->createQueryBuilder('c');
+    //     $q
+    //         ->innerJoin('c.translations', 't')
+    //         ->where('c.id = :id')
+    //         ->setParameter('id', $id['id'])
+    //         ;
+    //     return $q->getQuery()->getOneOrNullResult();
+    // }
 }

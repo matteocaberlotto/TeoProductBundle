@@ -10,4 +10,14 @@ use Teo\ProductBundle\Model\Category as BaseCategory;
  */
 class Category extends BaseCategory
 {
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
+    protected $translations;
+
+    public static function getTranslationEntityClass()
+    {
+        return __CLASS__ . 'Translation';
+    }
 }

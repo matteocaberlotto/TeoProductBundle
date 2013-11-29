@@ -3,8 +3,6 @@
       xsi:schemaLocation="https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
     <mapped-superclass name="Teo\ProductBundle\Model\Product">
-        <field name="title" type="string" column="title" length="255"/>
-        <field name="description" type="text" column="description" nullable="true"/>
         <field name="slug" type="string" column="slug" length="255" unique="true" nullable="true"/>
         <field name="extras" type="array" nullable="true"/>
 

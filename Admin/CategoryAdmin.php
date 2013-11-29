@@ -42,7 +42,19 @@ class CategoryAdmin extends Admin
         $tagsTransformer = new TagsToStringTransformer($this->getModelManager());
 
         $formMapper
-            ->add('title')
+            ->add('translations', 'a2lix_translations', array(
+                'required' => false,
+                'fields' => array(
+                    'title' => array(
+                        'locale_options' => array(
+                            'en' => array(),
+                            'it' => array()
+                        )
+                    )
+                )
+            ));
+
+        $formMapper
             ->add('parent')
             ->add('slug', null, array(
                 'required' => false
@@ -51,12 +63,12 @@ class CategoryAdmin extends Admin
                 'required' => false
             ))
             ->add('options', 'sonata_type_immutable_array', array(
-                    'keys' => $this->provideOptionsKeys(),
-                    'required' => false,
-                    'data' => $this->getSubject()->getOptions(),
-                    'attr' => array(
-                        'class' => 'product_extras'
-                    )
+                'keys' => $this->provideOptionsKeys(),
+                'required' => false,
+                'data' => $this->getSubject()->getOptions(),
+                'attr' => array(
+                    'class' => 'product_extras'
+                )
             ))
             ->add(
                 $formMapper->create('tags', 'text', array(
@@ -67,13 +79,15 @@ class CategoryAdmin extends Admin
                 ))->addModelTransformer($tagsTransformer)
             )
         ;
+
+
     }
 
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('title')
+            ->add('parent')
         ;
     }
 
@@ -81,7 +95,8 @@ class CategoryAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('title')
+            ->addIdentifier('id')
+            // ->add('title')
             ->add('parent')
             ->add('products')
         ;
@@ -123,7 +138,7 @@ class CategoryAdmin extends Admin
 
         if (empty($slug)) {
 
-            $title = $category->getTitle();
+            $title = $category->title();
 
             $inc = 0;
             $collision = array(true);
