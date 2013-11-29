@@ -18,7 +18,6 @@ class Category
      */
     protected $slug;
 
-
     /**
      * @var Category
      */
@@ -49,6 +48,9 @@ class Category
      */
     protected $categories;
 
+    // not mapped, added by Teo\ProductBundle
+    protected $current_locale;
+
     protected $tags;
 
     public function __construct() {
@@ -70,6 +72,18 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setCurrentLocale($locale)
+    {
+        $this->current_locale = $locale;
+
+        return $this;
+    }
+
+    public function getCurrentLocale($locale)
+    {
+        return $this->current_locale;
     }
 
     /**
@@ -410,6 +424,11 @@ class Category
 
     public function getCurrentTranslation()
     {
+        foreach ($this->getTranslations() as $translation) {
+            if ($translation->getLocale() == $this->current_locale) {
+                return $translation;
+            }
+        }
         return $this->getTranslations()->first();
     }
 

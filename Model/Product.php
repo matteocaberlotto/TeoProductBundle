@@ -41,6 +41,9 @@ class Product
      */
     protected $updated;
 
+    // not mapped, added by Teo\ProductBundle
+    protected $current_locale;
+
     /**
      * Constructor
      */
@@ -65,6 +68,18 @@ class Product
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setCurrentLocale($locale)
+    {
+        $this->current_locale = $locale;
+
+        return $this;
+    }
+
+    public function getCurrentLocale($locale)
+    {
+        return $this->current_locale;
     }
 
     /**
@@ -332,6 +347,11 @@ class Product
 
     public function getCurrentTranslation()
     {
+        foreach ($this->getTranslations() as $translation) {
+            if ($translation->getLocale() == $this->current_locale) {
+                return $translation;
+            }
+        }
         return $this->getTranslations()->first();
     }
 
