@@ -55,12 +55,17 @@ class CategoryAdmin extends Admin
             ));
 
         $formMapper
-            ->add('parent')
+            ->add('parent', null, array(
+                'property' => 'pathString',
+                'help' => 'the parent category'
+            ))
             ->add('slug', null, array(
-                'required' => false
+                'required' => false,
+                'help' => 'leave blank to auto-generate'
             ))
             ->add('position', null, array(
-                'required' => false
+                'required' => false,
+                'help' => 'the position of the category'
             ))
             ->add('options', 'sonata_type_immutable_array', array(
                 'keys' => $this->provideOptionsKeys(),
@@ -68,7 +73,8 @@ class CategoryAdmin extends Admin
                 'data' => $this->getSubject()->getOptions(),
                 'attr' => array(
                     'class' => 'product_extras'
-                )
+                ),
+                'help' => 'extra options'
             ))
             ->add(
                 $formMapper->create('tags', 'text', array(

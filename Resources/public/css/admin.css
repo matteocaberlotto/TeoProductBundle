@@ -64,3 +64,37 @@ ul.categories-tree li.product {
     text-align: right;
     width: 180px;
 }
+
+.sonata-ba-form form .help-block {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 13px;
+    clear: left;
+}
+
+.a2lix_translationsFields.tab-content {
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: 40px;
+    padding-bottom: 10px;
+}
+
+#croppable {
+    margin: 0 auto;
+}
+
+.image-cropper h4 {
+    text-align: center;
+}
+
+.image-cropper .span6 {
+    text-align: center;
+}
+
+.image-cropper p.info {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.jcrop-holder {
+    margin: 0 auto;
+}

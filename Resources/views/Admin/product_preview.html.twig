@@ -1,8 +1,9 @@
 <td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
 
     {% if value is not empty %}
-        <a href="{{ admin.generateUrl('edit', { 'id': value.first().getProduct.getId() }) }}">
+        <a href="{{ admin.generateUrl('edit', { 'id': value.first().getProduct().getId() }) }}">
             <img style="width: 100px;" src="{{ value.first().getPath() }}" />
+            <p>{{ value.first().getProduct().title() }}</p>
         </a>
     {% endif %}
 

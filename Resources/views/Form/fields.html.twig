@@ -3,12 +3,38 @@
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 
-    <label style="display:inline" for="delete_{{ name }}">
-        <input style="margin-top:-3px" id="delete_{{ name }}" name="delete_images[{{ name }}]" type="checkbox" />
-        REMOVE
-    </label>
 
-    {# {{ form_row(delete_image) }} #}
+    {% if value is not empty %}
+        <label style="display:inline" for="delete_{{ name }}">
+            <input style="margin-top:-3px" id="delete_{{ name }}" name="delete_images[{{ name }}]" type="checkbox" />
+            REMOVE
+        </label>
+
+        <a style="margin-left:20px" class="btn btn-default" href="{{ path('admin_teo_product_image_crop', { "src": rel_path }) }}">
+            <i class="icon-picture"></i> Crop
+        </a>
+
+        {% if image_info is not empty %}
+            <p>
+                {% if 0 in image_info|keys %}
+                    <small>Image size: {{ image_info[0] }} x {{ image_info[1] }} px</small><br>
+                {% endif %}
+                {% if 'mime' in image_info|keys %}
+                    <small>Mime: {{ image_info['mime'] }}</small>
+                {% endif %}
+                {% if 2 in image_info|keys %}
+                    <small> (Type {{ image_info[2] }})</small><br>
+                {% endif %}
+                {% if 'bits' in image_info|keys %}
+                    <small>Bit: {{ image_info['bits'] }}</small>
+                {% endif %}
+                {% if 'channels' in image_info|keys %}
+                    <small> Channels: {{ image_info['channels'] }}</small>
+                {% endif %}
+            </p>
+        {% endif %}
+    {% endif %}
+
 {% endspaceless %}
 {% endblock uploadable_file_widget %}
 

@@ -81,7 +81,7 @@ class ProductAdmin extends Admin
         $formMapper
             ->add('slug', null, array(
                 'required' => false,
-                'help' => 'Human readable suffix for urls'
+                'help' => 'Human readable suffix for urls (leave blank to autogenerate)'
             ))
             ->add('extras', 'sonata_type_immutable_array', array(
                 'keys' => $this->provideOptionsKeys(),
@@ -89,18 +89,9 @@ class ProductAdmin extends Admin
                 'data' => $this->getSubject()->getExtras(),
                 'attr' => array(
                     'class' => 'product_extras'
-                )
+                ),
+                'help' => 'extra options'
             ))
-            ->add(
-                $formMapper->create('images', 'collection', array(
-                    'data' => $this->getSubject()->getImages(),
-                    'data_class' => null,
-                    'allow_add' => true,
-                    'type' => 'uploadable_file',
-                    'label' => 'Product images',
-                    'required' => false
-                ))->addModelTransformer($imagesToFileTransformer)
-            )
         ;
 
         if ($this->leaf_only) {
@@ -113,7 +104,6 @@ class ProductAdmin extends Admin
             };
         }
 
-        // $type = null;
         if ($this->unique_category) {
 
             $category = $this->getSubject()->getCategories();
@@ -123,14 +113,30 @@ class ProductAdmin extends Admin
                     'class' => 'Teo\ProductBundle\Entity\Category',
                     'property' => 'pathString',
                     'data' => $category->first(),
-                    'required' => false
+                    'required' => false,
+                    'label' => 'Category'
                 ))->addModelTransformer(new CategoryToCollectionTransformer)
             );
         } else {
             $formMapper->add('categories', null, array(
-                'required' => false
+                'required' => false,
+                'label' => 'Categories'
             ));
         }
+
+
+        $formMapper
+            ->add(
+                $formMapper->create('images', 'collection', array(
+                    'data' => $this->getSubject()->getImages(),
+                    'data_class' => null,
+                    'allow_add' => true,
+                    'type' => 'uploadable_file',
+                    'label' => 'Product images',
+                    'required' => false
+                ))->addModelTransformer($imagesToFileTransformer)
+            )
+        ;
     }
 
     // Fields to be shown on filter forms

@@ -16,12 +16,15 @@ class UploadableFileType extends AbstractType
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $label = 'image';
+
         if (is_object($view->vars['value'])) {
             // FIXME:
             $path = $view->vars['value']->getPathname();
             $marker = '/uploads/';
             $path = substr($path, strpos($path, $marker));
             $label = sprintf('<img src="%s" />', $path);
+            $view->vars['rel_path'] = $path;
+            $view->vars['image_info'] = getimagesize($view->vars['value']->getPathname());
         }
 
         $view->vars = array_replace($view->vars, array(
@@ -48,7 +51,8 @@ class UploadableFileType extends AbstractType
         $resolver->setDefaults(array(
             'compound' => false,
             'data_class' => 'Symfony\Component\HttpFoundation\File\File',
-            'empty_data' => null
+            'empty_data' => null,
+            'object_id' => null
         ));
     }
 

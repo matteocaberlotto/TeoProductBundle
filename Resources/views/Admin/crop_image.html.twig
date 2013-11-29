@@ -1,0 +1,151 @@
+{% extends base_template %}
+
+{% block title %}
+    {{ 'crop image'|capitalize }}
+{% endblock%}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bundles/teoproduct/css/admin.css') }}">
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ asset('bundles/teoproduct/css/jquery.Jcrop.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('bundles/teoproduct/js/jquery.Jcrop.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block actions %}
+    <div class="sonata-actions btn-group">
+        <a class="btn btn-default">Need to do</a>
+    </div>
+{% endblock %}
+
+{% block side_menu %}{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active'}, 'list') }}{% endblock %}
+
+{% block sonata_page_content %}
+    {% block notice %}
+        {% for notice_level in ['success','error','info', 'warning'] %}
+            {% set session_var = 'sonata_flash_' ~ notice_level %}
+            {% for flash in app.session.flashbag.get(session_var) %}
+                <div class="alert {{ 'alert-' ~ notice_level }}">
+                    {{ flash|trans([], 'SonataAdminBundle') }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endblock %}
+
+
+    <div class="row-fluid">
+        <div class="span6">
+            <ul class="breadcrumb">
+                <li>
+                    <a href="{{ path('sonata_admin_dashboard') }}">Dashboard</a>
+                    <span class="divider">/</span>
+                </li>
+                <li>
+                    <a href="{{ return_path }}">Product</a>
+                    <span class="divider">/</span>
+                </li>
+                <li>
+                    <a class="active" href="">Crop image</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="row-fluid image-cropper">
+        <div class="span6">
+            <h4>Original image</h4>
+            <img id="croppable" style="width:400px" src="{{ app.request.get('src') }}?random={{ random }}" />
+            <p class="info">Press 'ESC' to reset</p>
+        </div>
+        <div class="span6 info">
+            <div class="row-fluid">
+                <h4>Cropped preview</h4>
+                <div class="image-preview"></div>
+            </div>
+            <div class="row-fluid">
+                <form class="form-horizontal" id="crop-image" method="POST">
+                    <input name="v[]" type="hidden">
+                    <input name="v[]" type="hidden">
+                    <input name="v[]" type="hidden">
+                    <input name="v[]" type="hidden">
+                    <input type="hidden" name="src" value="{{ app.request.get('src') }}" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div class="well well-small form-actions">
+                <a class="btn btn-default crop-button">CROP</a> or <a href="{{ return_path }}" class="btn btn-danger">CANCEL</a>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+    var refreshValues = function (c) {
+        var coeff = '{{ actual_width }}' / 400;
+        $('.info form input').eq(0).val(parseInt(c.x * coeff));
+        $('.info form input').eq(1).val(parseInt(c.y * coeff));
+        $('.info form input').eq(2).val(parseInt(c.x2 * coeff));
+        $('.info form input').eq(3).val(parseInt(c.y2 * coeff));
+    }
+
+    var updateCropPreview = function (c) {
+
+        var prev = $('<div/>');
+        prev.width((c.x2 - c.x));
+        prev.height((c.y2 - c.y));
+        prev.css({
+            'overflow': 'hidden',
+            'position': 'relative',
+            'display': 'inline-flex',
+            'top': c.y
+        });
+        prev.append($('<img/>', {
+            src: $('#croppable').attr('src')
+        }));
+        prev.find('img').width('400px');
+        prev.find('img').css({
+            'position': 'absolute',
+            'top': - c.y,
+            'left': - c.x
+        });
+
+        $(".image-preview").html(prev);
+
+        refreshValues(c);
+    };
+
+    var clearCropPreview = function () {
+        $('.info form input').val("");
+        $(".image-preview").html("");
+    };
+
+    $(function () {
+
+        var jcrop_api;
+
+        $('img#croppable').Jcrop({
+            onChange:   refreshValues,
+            onSelect:   updateCropPreview,
+            onRelease:  clearCropPreview
+        },function(){
+            jcrop_api = this;
+        });
+
+        $(".crop-button").click(function () {
+
+            $("form#crop-image").submit();
+        });
+    });
+
+
+    </script>
+{% endblock %}
