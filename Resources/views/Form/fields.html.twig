@@ -19,17 +19,17 @@
                 {% if 0 in image_info|keys %}
                     <small>Image size: {{ image_info[0] }} x {{ image_info[1] }} px</small><br>
                 {% endif %}
-                {% if 'mime' in image_info|keys %}
+                {% if image_info.mime is defined %}
                     <small>Mime: {{ image_info['mime'] }}</small>
                 {% endif %}
                 {% if 2 in image_info|keys %}
                     <small> (Type {{ image_info[2] }})</small><br>
                 {% endif %}
-                {% if 'bits' in image_info|keys %}
+                {% if image_info.bits is defined %}
                     <small>Bit: {{ image_info['bits'] }}</small>
                 {% endif %}
-                {% if 'channels' in image_info|keys %}
-                    <small> Channels: {{ image_info['channels'] }}</small>
+                {% if image_info.channels is defined %}
+                    <small> Channels: {{ image_info.channels }}</small>
                 {% endif %}
             </p>
         {% endif %}
