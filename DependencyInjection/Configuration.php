@@ -55,6 +55,11 @@ class Configuration implements ConfigurationInterface
                                     ->end()
                                 ->end()
                             ->end()
+                            ->arrayNode('attr')
+                                ->children()
+                                    ->scalarNode('class')->end()
+                                ->end()
+                            ->end()
                         ->end()
                     ->end()
                     ->defaultValue(array('title' => array(

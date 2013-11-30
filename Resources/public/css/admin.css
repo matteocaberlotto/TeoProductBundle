@@ -98,3 +98,13 @@ ul.categories-tree li.product {
 .jcrop-holder {
     margin: 0 auto;
 }
+
+.product_description {
+    min-width: 500px;
+    min-height: 160px;
+    resize: vertical;
+}
+
+.product_title {
+    min-width: 500px;
+}
