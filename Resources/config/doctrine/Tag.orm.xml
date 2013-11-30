@@ -7,7 +7,7 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-many target-entity="Teo\ProductBundle\Entity\Category" field="categories" inversed-by="tags" />
+        <many-to-many target-entity="Teo\ProductBundle\Entity\Category" field="categories" mapped-by="tags" />
 
     </entity>
 
