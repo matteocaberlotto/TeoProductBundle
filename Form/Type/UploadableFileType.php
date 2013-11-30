@@ -22,7 +22,7 @@ class UploadableFileType extends AbstractType
             $path = $view->vars['value']->getPathname();
             $marker = '/uploads/';
             $path = substr($path, strpos($path, $marker));
-            $label = sprintf('<img src="%s" />', $path);
+            $label = sprintf('<img src="%s" />', $path . '?rand=' . md5(mt_rand()) . md5(mt_rand()));
             $view->vars['rel_path'] = $path;
             $view->vars['image_info'] = getimagesize($view->vars['value']->getPathname());
         }
