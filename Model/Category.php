@@ -188,6 +188,17 @@ class Category
         return $this->products;
     }
 
+    public function getOrderedProducts()
+    {
+        $iterator = $this->products->getIterator();
+
+        $iterator->uasort(function ($first, $second) {
+            return (int) $first->getPosition() > (int) $second->getPosition() ? 1 : -1;
+        });
+
+        return $iterator;
+    }
+
     /**
      * Set products property
      *
@@ -232,6 +243,17 @@ class Category
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    public function getOrderedCategories()
+    {
+        $iterator = $this->categories->getIterator();
+
+        $iterator->uasort(function ($first, $second) {
+            return (int) $first->getPosition() > (int) $second->getPosition() ? 1 : -1;
+        });
+
+        return $iterator;
     }
 
     public function hasChildren()

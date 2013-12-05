@@ -1,5 +1,6 @@
-<li class="prod">
+<li class="prod" data-id="{{ product.getId() }}">
     <small>
+
         {% if not product.hasPreview() %}
             <i class="icon-barcode"></i>
         {% endif %}
@@ -8,6 +9,10 @@
                 <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
             {% endif %}
             {{ product.title() }}
+        </a>
+
+        <a title="Reorder product" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
+            <i class="icon-resize-vertical icon-white"></i>
         </a>
     </small>
 </li>

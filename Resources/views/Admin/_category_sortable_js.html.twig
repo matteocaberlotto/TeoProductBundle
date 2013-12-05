@@ -20,6 +20,27 @@ $(".cat-list").sortable({
     }
 });
 
+$(".prod-list").sortable({
+    handle: '.reorder',
+    stop: function (event, ui) {
+
+        var ids = [];
+
+        $(ui.item).parents('ul').first().find('> li.prod').each(function () {
+            ids.push($(this).data('id'));
+        });      
+
+        $.ajax({
+            type: 'POST',
+            data: {ids: ids},
+            url: "{{ path('admin_teo_product_product_reorder') }}",
+            success: function () {
+                // alert('done');
+            }
+        });
+    }
+});
+
 $(".reorder")
     .mouseenter(function () {
         $(this).parents('li').first().addClass('hover');
@@ -28,4 +49,6 @@ $(".reorder")
         $(this).parents('li').first().removeClass('hover');
     })
     ;
+
+$('.tooltip-trigger').tooltip();
 </script>

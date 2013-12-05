@@ -14,6 +14,7 @@ use Teo\ProductBundle\Form\DataTransformer\CategoryToCollectionTransformer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Teo\ProductBundle\SlugGenerator;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class ProductAdmin extends Admin
 {
@@ -79,6 +80,10 @@ class ProductAdmin extends Admin
         ));
 
         $formMapper
+            ->add('position', null, array(
+                'required' => false,
+                'help' => 'the position of the product'
+            ))
             ->add('slug', null, array(
                 'required' => false,
                 'help' => 'Human readable suffix for urls (leave blank to autogenerate)'
@@ -174,6 +179,11 @@ class ProductAdmin extends Admin
                 return parent::getTemplate($name);
                 break;
         }
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->add('reorder');
     }
 
     public function prePersist($product)

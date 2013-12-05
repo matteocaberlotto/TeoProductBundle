@@ -17,7 +17,7 @@
           <tag name="sonata.admin" manager_type="orm" group="Content" label="Products"/>
           <argument />
           <argument>Teo\ProductBundle\Entity\Product</argument>
-          <argument />
+          <argument>TeoProductBundle:ProductCRUD</argument>
           <call method="setTranslationDomain">
               <argument>TeoProductBundle</argument>
           </call>

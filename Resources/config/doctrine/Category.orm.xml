@@ -15,7 +15,7 @@
 
     <many-to-many field="products" target-entity="Teo\ProductBundle\Entity\Product" mapped-by="categories"/>
 
-    <many-to-many field="tags" target-entity="Teo\ProductBundle\Entity\Tag" inversed-by="categories"/>
+    <many-to-many field="tags" target-entity="Teo\ProductBundle\Entity\Tag" mapped-by="categories"/>
 
     <lifecycle-callbacks>
       <lifecycle-callback type="prePersist" method="setCurrentLevel"/>

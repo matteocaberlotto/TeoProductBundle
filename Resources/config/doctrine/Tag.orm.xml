@@ -7,7 +7,21 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-many target-entity="Teo\ProductBundle\Entity\Category" field="categories" mapped-by="tags" />
+        <many-to-many target-entity="Teo\ProductBundle\Entity\Category" field="categories" inversed-by="tags">
+
+            <join-table name="category_tag">
+              <join-columns>
+                <join-column name="tag_id" referenced-column-name="id" />
+              </join-columns>
+              <inverse-join-columns>
+                <join-column name="category_id" referenced-column-name="id" />
+              </inverse-join-columns>
+            </join-table>
+
+            <cascade>
+              <all/>
+            </cascade>
+        </many-to-many>
 
     </entity>
 

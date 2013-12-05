@@ -6,21 +6,21 @@
         </a>
     </span>
 
-    <a title="Edit category" class="btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('edit', object) }}">
+    <a data-toggle="tooltip" title="Edit category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('edit', object) }}">
         <i class="icon-pencil icon-white"></i>
     </a>
 
     {% if level < max_depth %}
-    <a title="Add child category" class="btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('create', object, { "parent": object.getId() }) }}">
+    <a data-toggle="tooltip" title="Add child category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('create', object, { "parent": object.getId() }) }}">
         <i class="icon-plus icon-white"></i>
     </a>
     {% endif %}
 
-    <a title="Reorder category" class="btn btn-mini btn-primary reorder" href="javascript:;">
+    <a data-toggle="tooltip" title="Reorder category" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
         <i class="icon-resize-vertical icon-white"></i>
     </a>
 
-    <a title="Remove category" class="btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('delete', object) }}">
+    <a data-toggle="tooltip" title="Remove category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('delete', object) }}">
         <i class="icon-remove icon-white"></i>
     </a>
 
@@ -29,7 +29,7 @@
 
     {% set childLevel = level + 1 %}
     <ul class="cat-list">
-        {% for child in object.getCategories() %}
+        {% for child in object.getOrderedCategories() %}
             {% include 'TeoProductBundle:Admin:category_item.html.twig' with { "object": child, "level": childLevel } %}
         {% endfor %}
     </ul>
@@ -38,8 +38,8 @@
 
     {% if show_products %}
         {% if object.hasProducts() %}
-        <ul>
-            {% for product in object.getProducts() %}
+        <ul class="prod-list">
+            {% for product in object.getOrderedProducts() %}
                 {% include 'TeoProductBundle:Admin:category_product.html.twig' %}
             {% endfor %}
         </ul>

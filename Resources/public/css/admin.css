@@ -24,6 +24,7 @@ ul.categories-tree li {
     margin-top: 20px;
 }
 
+ul.categories-tree li.prod.hover,
 ul.categories-tree li.cat.hover {
     background: rgba(0, 153, 221, 0.1);
 }
