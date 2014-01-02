@@ -38,5 +38,6 @@ class ImageAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('crop');
+        $collection->add('rotate_image');
     }
 }

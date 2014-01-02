@@ -88,4 +88,53 @@ class ImageCRUDController extends CRUDController
             'random' => md5(mt_rand()) . md5(mt_rand())
         ));
     }
+
+    public function rotateImageAction()
+    {
+        $direction = $this->getRequest()->get('direction');
+        $path = $this->getRequest()->get('path');
+        $source_path = $this->container->getParameter('kernel.root_dir') . "/../web" . $this->getRequest()->get('path');
+        list( $source_width, $source_height, $source_type ) = getimagesize($source_path);
+        switch ( $source_type )
+        {
+        case IMAGETYPE_GIF:
+            $source_gdim = imagecreatefromgif($source_path);
+            break;
+
+        case IMAGETYPE_JPEG:
+            $source_gdim = imagecreatefromjpeg($source_path);
+            break;
+
+        case IMAGETYPE_PNG:
+            $source_gdim = imagecreatefrompng($source_path);
+            break;
+        }
+
+        $degree = -90;
+        if ($direction === 'counterclockwise') {
+            $degree = 90;
+        }
+
+        $rotate = imagerotate($source_gdim, $degree, 0);
+
+        switch ( $source_type )
+        {
+        case IMAGETYPE_GIF:
+            imagegif($rotate, $source_path);
+            break;
+
+        case IMAGETYPE_JPEG:
+            imagejpeg($rotate, $source_path);
+            break;
+
+        case IMAGETYPE_PNG:
+            imagepng($rotate, $source_path);
+            break;
+        }
+
+        return $this->redirect($this->generateUrl(
+            'admin_teo_product_image_crop', array(
+            'src' => $path
+        )));
+    }
 }

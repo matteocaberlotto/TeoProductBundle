@@ -24,6 +24,11 @@ class Image
      */
     protected $product;
 
+    public function __toString()
+    {
+        return (string) $this->path;
+    }
+
     /**
      * Get id
      *
