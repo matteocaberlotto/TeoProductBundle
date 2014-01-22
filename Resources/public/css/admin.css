@@ -128,3 +128,7 @@ ul.categories-tree li.product {
 .image-preview div img {
     max-width: none;
 }
+
+.select2-container {
+    min-width: 400px !important;
+}
