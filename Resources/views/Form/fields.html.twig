@@ -3,6 +3,9 @@
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
 
+    {% if reference_id is defined %}
+        <span class="image_id" data-id="{{ reference_id }}"/>
+    {% endif %}
 
     {% if value is not empty %}
         <label style="display:inline" for="delete_{{ name }}">
@@ -12,6 +15,10 @@
 
         <a style="margin-left:20px" class="btn btn-default" href="{{ path('admin_teo_product_image_crop', { "src": rel_path }) }}">
             <i class="icon-picture"></i> Crop
+        </a>
+
+        <a style="margin-left:20px" class="btn btn-default sort-images" href="javascript:;">
+            <i class="icon-resize-vertical"></i> Move
         </a>
 
         {% if image_info is not empty %}

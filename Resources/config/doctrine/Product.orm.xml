@@ -8,6 +8,9 @@
     
 
     <one-to-many field="images" target-entity="Teo\ProductBundle\Entity\Image" mapped-by="product">
+      <order-by>
+          <order-by-field name="position" direction="ASC" />
+      </order-by>
       <cascade>
         <all/>
       </cascade>

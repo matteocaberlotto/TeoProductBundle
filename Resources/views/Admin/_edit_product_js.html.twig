@@ -1,0 +1,22 @@
+<script>
+$(".teo_product_images").sortable({
+    handle: '.sort-images',
+    stop: function (event, ui) {
+
+        var ids = [];
+
+        $(ui.item).parents('.teo_product_images').first().find('> .sonata-collection-row').each(function () {
+            ids.push($(this).find('span.image_id').data('id'));
+        });
+
+        $.ajax({
+            type: 'POST',
+            data: { ids: ids },
+            url: "{{ path('admin_teo_product_image_reorder') }}",
+            success: function () {
+                // alert('Done :)');
+            }
+        });
+    }
+});
+</script>

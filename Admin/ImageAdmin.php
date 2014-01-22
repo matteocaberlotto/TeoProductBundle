@@ -39,5 +39,6 @@ class ImageAdmin extends Admin
     {
         $collection->add('crop');
         $collection->add('rotate_image');
+        $collection->add('reorder');
     }
 }

@@ -7,6 +7,12 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ImageCRUDController extends CRUDController
 {
+    public function reorderAction()
+    {
+        $ids = $this->getRequest()->get('ids');
+        $this->getDoctrine()->getRepository('TeoProductBundle:Image')->reorder($ids);
+        return new JsonResponse(array('result' => true), 200);
+    }
 
     // TODO: refactor this method
     public function cropAction()

@@ -138,7 +138,13 @@ class ProductAdmin extends Admin
                     'allow_add' => true,
                     'type' => 'uploadable_file',
                     'label' => 'Product images',
-                    'required' => false
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'teo_product_images'
+                    ),
+                    'options' => array(
+                        'references' => $this->getSubject()->getImages()
+                    )
                 ))->addModelTransformer($imagesToFileTransformer)
             )
         ;

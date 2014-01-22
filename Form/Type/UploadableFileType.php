@@ -27,6 +27,13 @@ class UploadableFileType extends AbstractType
             $view->vars['image_info'] = getimagesize($view->vars['value']->getPathname());
         }
 
+        // if i spend 1 minute more it's not worth having a form framework.
+        foreach ($options['references'] as $image) {
+            if (isset($path) && $image->getPath() == $path) {
+                $view->vars['reference_id'] = $image->getId();
+            }
+        }
+
         $view->vars = array_replace($view->vars, array(
             'type'  => 'file',
             'label' => $label
@@ -52,7 +59,8 @@ class UploadableFileType extends AbstractType
             'compound' => false,
             'data_class' => 'Symfony\Component\HttpFoundation\File\File',
             'empty_data' => null,
-            'object_id' => null
+            'object_id' => null,
+            'references' => array()
         ));
     }
 
