@@ -124,3 +124,7 @@ ul.categories-tree li.product {
     margin-top: 2px;
     margin-right: 2px;
 }
+
+.image-preview div img {
+    max-width: none;
+}
