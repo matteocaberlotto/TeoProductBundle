@@ -38,6 +38,16 @@ ul.categories-tree li a.product {
     margin-left: 4px;
 }
 
+ul.categories-tree li a.product {
+    min-width: 280px;
+    display: inline-block;
+    text-align: center;
+}
+
+ul.categories-tree li a.product img {
+    float: left;
+}
+
 ul.categories-tree li a.category {
     text-transform: uppercase;
 }
