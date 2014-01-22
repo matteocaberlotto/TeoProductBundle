@@ -166,6 +166,7 @@ class ProductAdmin extends Admin
                 'label' => 'Preview',
                 'template' => 'TeoProductBundle:Admin:product_preview.html.twig'
             ))
+            ->add('slug')
             ->add('translations', null, array(
                 'template' => 'TeoProductBundle:Admin:product_info.html.twig'
             ))
