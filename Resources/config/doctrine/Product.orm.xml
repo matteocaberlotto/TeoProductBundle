@@ -16,6 +16,15 @@
       </cascade>
     </one-to-many>
 
+    <one-to-many field="attachments" target-entity="Teo\ProductBundle\Entity\Attachment" mapped-by="product">
+      <order-by>
+          <order-by-field name="position" direction="ASC" />
+      </order-by>
+      <cascade>
+        <all/>
+      </cascade>
+    </one-to-many>
+
     <many-to-many field="categories" target-entity="Teo\ProductBundle\Entity\Category" inversed-by="products">
 
         <join-table name="products_categories">

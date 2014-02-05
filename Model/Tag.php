@@ -65,7 +65,7 @@ class Tag
      */
     public function addCategory(Category $category)
     {
-        $this->categories[] = $categories;
+        $this->categories[] = $category;
     
         return $this;
     }

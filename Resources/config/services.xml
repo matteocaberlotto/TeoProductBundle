@@ -21,6 +21,14 @@
             <argument type="service" id="session"/>
             <tag name="doctrine.event_listener" event="postLoad" />
         </service>
+
+        <service id="teo.products" class="Teo\ProductBundle\Entity\ProductRepository" factory-service="doctrine" factory-method="getRepository">
+            <argument>Teo\ProductBundle\Entity\Product</argument>
+        </service>
+
+        <service id="teo.categories" class="Teo\ProductBundle\Entity\CategoryRepository" factory-service="doctrine" factory-method="getRepository">
+            <argument>Teo\ProductBundle\Entity\Category</argument>
+        </service>
     </services>
 
 </container>

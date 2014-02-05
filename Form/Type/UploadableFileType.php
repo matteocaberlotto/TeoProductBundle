@@ -15,16 +15,31 @@ class UploadableFileType extends AbstractType
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $label = 'image';
+        $label = 'Browse file and upload';
 
         if (is_object($view->vars['value'])) {
+
             // FIXME:
             $path = $view->vars['value']->getPathname();
             $marker = '/uploads/';
             $path = substr($path, strpos($path, $marker));
-            $label = sprintf('<img src="%s" />', $path . '?rand=' . md5(mt_rand()) . md5(mt_rand()));
+
+            if (preg_match('/(gif|jpeg|png|jpg)$/', $path)) {
+                // that's an image, show preview.
+                $view->vars['is_image'] = true;
+                $label = sprintf('<img src="%s" />', $path . '?rand=' . md5(mt_rand()) . md5(mt_rand()));
+                $view->vars['image_info'] = getimagesize($view->vars['value']->getPathname());
+            } else {
+                // that's a file, show filename.
+                $view->vars['is_image'] = false;
+                $label = '<i class="icon icon-file"></i> ' . substr(basename($path), 0, 12) . '...';
+            }
+
             $view->vars['rel_path'] = $path;
-            $view->vars['image_info'] = getimagesize($view->vars['value']->getPathname());
+
+            $this->vars['file_info'] = array(
+                'size' => filesize($view->vars['value']->getPathname())
+            );
         }
 
         // if i spend 1 minute more it's not worth having a form framework.

@@ -29,6 +29,11 @@ class Product
     /**
      * @var \Doctrine\Common\Collections\ArrayCollection
      */
+    protected $attachments;
+
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     */
     protected $categories;
 
     /**
@@ -56,6 +61,7 @@ class Product
     {
         $this->prices = new \Doctrine\Common\Collections\ArrayCollection();
         $this->images = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->attachments = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
         $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -154,6 +160,29 @@ class Product
     public function removeImage(\Teo\ProductBundle\Model\Image $images)
     {
         $this->images->removeElement($images);
+    }
+
+    /**
+     * Add attachments
+     *
+     * @param \Teo\ProductBundle\Model\Attachment $attachments
+     * @return Product
+     */
+    public function addAttachment(\Teo\ProductBundle\Model\Attachment $attachments)
+    {
+        $this->attachments[] = $attachments;
+    
+        return $this;
+    }
+
+    /**
+     * Remove attachments
+     *
+     * @param \Teo\ProductBundle\Model\Attachment $attachments
+     */
+    public function removeAttachment(\Teo\ProductBundle\Model\Attachment $attachments)
+    {
+        $this->attachments->removeElement($attachments);
     }
 
     /**
@@ -344,6 +373,14 @@ class Product
         $this->extras[$key] = $value;
 
         return $this;
+    }
+
+    public function hasAttachments() {
+        return count($this->attachments);
+    }
+
+    public function getAttachments() {
+        return $this->attachments;
     }
 
     /**

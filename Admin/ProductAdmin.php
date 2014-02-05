@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 use Teo\ProductBundle\Form\UploadHelper;
 use Teo\ProductBundle\Form\DataTransformer\ImagesToFileTransformer;
+use Teo\ProductBundle\Form\DataTransformer\AttachmentToFileTransformer;
 use Teo\ProductBundle\Form\DataTransformer\CategoryToCollectionTransformer;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
@@ -22,15 +23,22 @@ class ProductAdmin extends Admin
 
     protected $unique_category;
 
-    protected $leaf_only;
+    protected $leaf_only = false;
 
     protected $product_extra_options;
 
     protected $visible_fields;
 
+    protected $attachment = false;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
+    }
+
+    public function setAttachment()
+    {
+        $this->attachment = true;
     }
 
     public function setExtraOptions($options)
@@ -73,6 +81,7 @@ class ProductAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $imagesToFileTransformer = new ImagesToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
+        $attachmentToFileTransformer = new AttachmentToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
 
         $formMapper->add('translations', 'a2lix_translations', array(
             'required' => false,
@@ -148,6 +157,27 @@ class ProductAdmin extends Admin
                 ))->addModelTransformer($imagesToFileTransformer)
             )
         ;
+
+        if ($this->attachment) {
+            $formMapper
+                ->add(
+                    $formMapper->create('attachments', 'collection', array(
+                        'data' => $this->getSubject()->getAttachments(),
+                        'data_class' => null,
+                        'allow_add' => true,
+                        'type' => 'uploadable_file',
+                        'label' => 'File attachments',
+                        'required' => false,
+                        'attr' => array(
+                            'class' => 'teo_product_attachments'
+                        ),
+                        'options' => array(
+                            'references' => $this->getSubject()->getAttachments()
+                        )
+                    ))->addModelTransformer($attachmentToFileTransformer)
+                )
+            ;
+        }
     }
 
     // Fields to be shown on filter forms

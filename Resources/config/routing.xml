@@ -7,4 +7,8 @@
     <route id="teo_product_homepage" pattern="/hello/{name}">
         <default key="_controller">TeoProductBundle:Default:index</default>
     </route>
+
+    <route id="teo_product_download" pattern="/product/download/{id}">
+        <default key="_controller">TeoProductBundle:Default:download</default>
+    </route>
 </routes>

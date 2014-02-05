@@ -13,15 +13,23 @@
             REMOVE
         </label>
 
+        {% if is_image %}
         <a style="margin-left:20px" class="btn btn-default" href="{{ path('admin_teo_product_image_crop', { "src": rel_path }) }}">
             <i class="icon-picture"></i> Crop
         </a>
 
         <a style="margin-left:20px" class="btn btn-default sort-images" href="javascript:;">
-            <i class="icon-resize-vertical"></i> Move
+            <i class="icon-resize-vertical"></i>
         </a>
+        {% endif %}
 
-        {% if image_info is not empty %}
+        {% if file_info is defined %}
+            <p>
+                <small>Size: {{ file_info['size'] }}</small>
+            </p>
+        {% endif %}
+
+        {% if image_info is defined %}
             <p>
                 {% if 0 in image_info|keys %}
                     <small>Image size: {{ image_info[0] }} x {{ image_info[1] }} px</small><br>
