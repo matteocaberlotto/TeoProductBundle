@@ -128,14 +128,25 @@ class CategoryAdmin extends Admin
         $collection->add('reorder');
     }
 
+    public function updateTags($category)
+    {
+        foreach ($category->getTags() as $tag) {
+            if (!$tag->getId()) {
+                $tag->addCategory($category);
+            }
+        }
+    }
+
     public function prePersist($category)
     {
         $this->updateSlug($category);
+        $this->updateTags($category);
     }
 
     public function preUpdate($category)
     {
         $this->updateSlug($category);
+        $this->updateTags($category);
     }
 
     public function updateSlug($category)
