@@ -383,6 +383,12 @@ class Product
         return $this->attachments;
     }
 
+    public function setAttachments($attachments)
+    {
+        $this->attachments = $attachments;
+        return $this;
+    }
+
     /**
      * Here follows the A2lix bundle trait Translatable
      */
