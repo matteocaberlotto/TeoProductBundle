@@ -2,14 +2,14 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
-    <entity name="Teo\ProductBundle\Entity\Tag" table="tag" repository-class="TagRepository">
+    <entity name="Teo\ProductBundle\Entity\Tag" table="category_tag" repository-class="TagRepository">
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>
         </id>
 
         <many-to-many target-entity="Teo\ProductBundle\Entity\Category" field="categories" inversed-by="tags">
 
-            <join-table name="category_tag">
+            <join-table name="category_category_tag">
               <join-columns>
                 <join-column name="tag_id" referenced-column-name="id" />
               </join-columns>
