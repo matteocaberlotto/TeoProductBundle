@@ -29,6 +29,7 @@ ul.categories-tree li.prod {
     border: solid 1px #EEEEEE;
     width: 80%;
     border-radius: 2px;
+    background: #FFFFFF;
 }
 
 ul.categories-tree li.prod.hover,
