@@ -1,12 +1,11 @@
 <li class="prod" data-id="{{ product.getId() }}">
     <small>
 
-        {% if not product.hasPreview() %}
-            <i class="icon-barcode"></i>
-        {% endif %}
         <a class="product alert-warning" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
             {% if product.hasPreview() %}
                 <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
+            {% else %}
+                <i class="icon-barcode"></i>
             {% endif %}
             {{ product.title() }}
         </a>

@@ -11,8 +11,9 @@ ul.categories-tree ul {
     list-style: none;
 }
 
-ul.categories-tree li i {
+ul.categories-tree li a.product i {
     margin-top: 4px;
+    float: left;
 }
 
 ul.categories-tree small i {
@@ -22,6 +23,12 @@ ul.categories-tree small i {
 ul.categories-tree li {
     font-size: 18px;
     margin-top: 20px;
+}
+ul.categories-tree li.prod {
+    padding: 4px;
+    border: solid 1px #EEEEEE;
+    width: 80%;
+    border-radius: 2px;
 }
 
 ul.categories-tree li.prod.hover,
@@ -39,7 +46,7 @@ ul.categories-tree li a.product {
 }
 
 ul.categories-tree li a.product {
-    min-width: 280px;
+    width: 90%;
     display: inline-block;
     text-align: center;
 }
@@ -129,6 +136,6 @@ ul.categories-tree li.product {
     max-width: none;
 }
 
-.select2-container {
+.tabbable .select2-container {
     min-width: 400px !important;
 }
