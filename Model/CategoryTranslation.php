@@ -21,13 +21,13 @@ class CategoryTranslation
     /**
      * @var string
      */
-    private $description;
+    protected $description;
 
     /**
      * Set title
      *
      * @param string $title
-     * @return ProductTranslation
+     * @return CategoryTranslation
      */
     public function setTitle($title)
     {
