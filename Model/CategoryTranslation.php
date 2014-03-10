@@ -13,7 +13,15 @@ class CategoryTranslation
      */
     protected $title;
 
+    /**
+     * @var Teo\ProductBundle\Model\Category
+     */
     protected $category;
+
+    /**
+     * @var string
+     */
+    private $description;
 
     /**
      * Set title
@@ -83,5 +91,28 @@ class CategoryTranslation
     {
         $this->locale = $locale;
         return $this;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return CategoryTranslation
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

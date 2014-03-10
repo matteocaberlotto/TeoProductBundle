@@ -11,7 +11,6 @@ class LocaleSettings implements EventSubscriber
 {
     protected $session;
 
-
     public function getSubscribedEvents()
     {
         return array(

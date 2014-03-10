@@ -4,6 +4,7 @@
 
     <mapped-superclass name="Teo\ProductBundle\Model\CategoryTranslation">
         <field name="title" type="string" column="title" length="255" nullable="true"/>
+        <field name="description" type="text" column="description" nullable="true"/>
         <field name="locale" type="string" column="locale" length="10"/>
     </mapped-superclass>
 
