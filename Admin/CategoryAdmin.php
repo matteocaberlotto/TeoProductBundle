@@ -150,9 +150,11 @@ class CategoryAdmin extends Admin
 
     public function updateTags($category)
     {
-        foreach ($category->getTags() as $tag) {
-            if (!$tag->getId()) {
-                $tag->addCategory($category);
+        if (count($category->getTags())) {
+            foreach ($category->getTags() as $tag) {
+                if (!$tag->getId()) {
+                    $tag->addCategory($category);
+                }
             }
         }
     }
