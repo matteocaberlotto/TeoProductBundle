@@ -126,3 +126,64 @@
     {% endif %}
 {% endspaceless %}
 {% endblock colorpicker_label %}
+
+{% block youtube_video_widget %}
+{% spaceless %}
+{% set type = type|default('text') %}
+<input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+<script>
+function youtube_parser(url){
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match&&match[7].length==11) {
+        return match[7];
+    } else {
+        console.log("Url incorrect");
+        return false;
+    }
+}
+
+var checkYoutubeVideo = function () {
+    var content = $('#{{ id }}').val();
+    var code = youtube_parser(content);
+
+    if (!code) {
+        var regex = /[a-z0-9\-]{11}/i;
+        var result = regex.exec(content);
+        if (result) {
+            code = content;
+        }
+    }
+
+    $('label[for={{ id }}]').find('i').remove();
+    if (code) {
+        $('#{{ id }}').parent().find('iframe').remove();
+        $('#{{ id }}').parent().append($('<iframe/>', {
+            src: 'http://www.youtube.com/embed/' + code,
+            style: 'clear:left;display:block;margin-top:10px;'
+        }));
+
+        $('#{{ id }}').val(code);
+    } else {
+        $('label[for={{ id }}]').append(' <i class="red">no</i>');
+    }
+}
+
+var video_check_timeout = null;
+
+$(function () {
+    $('#{{ id }}')
+        .bind('keyup', function () {
+
+            clearTimeout(video_check_timeout);
+
+            video_check_timeout = setTimeout(function () {
+                checkYoutubeVideo();
+            }, 500);
+
+        });
+});
+</script>
+<br>
+{% endspaceless %}
+{% endblock %}

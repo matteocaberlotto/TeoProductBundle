@@ -8,15 +8,22 @@
     <parameters>
         <parameter key="teo_product.uploadable.type.class">Teo\ProductBundle\Form\Type\UploadableFileType</parameter>
         <parameter key="teo_product.colorpicker.type.class">Teo\ProductBundle\Form\Type\ColorpickerType</parameter>
+        <parameter key="teo_product.youtube_video.type.class">Teo\ProductBundle\Form\Type\YoutubeVideoType</parameter>
     </parameters>
 
     <services>
         <service id="teo_product.uploadable.type" class="%teo_product.uploadable.type.class%">
             <tag name="form.type" alias="uploadable_file" />
         </service>
+
         <service id="teo_product.colorpicker.type" class="%teo_product.colorpicker.type.class%">
             <tag name="form.type" alias="colorpicker" />
         </service>
+
+        <service id="teo_product.youtube_video.type" class="%teo_product.youtube_video.type.class%">
+            <tag name="form.type" alias="youtube_video" />
+        </service>
+
         <service id="teo_product.doctrine_listener" class="Teo\ProductBundle\EventListener\LocaleSettings">
             <argument type="service" id="session"/>
             <tag name="doctrine.event_listener" event="postLoad" />

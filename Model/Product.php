@@ -375,6 +375,11 @@ class Product
         return $this;
     }
 
+    public function hasExtra($key)
+    {
+        return isset($this->extras[$key]);
+    }
+
     public function hasAttachments() {
         return count($this->attachments);
     }
