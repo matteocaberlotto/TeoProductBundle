@@ -9,52 +9,52 @@
 
     <services>
 
-      <service id="teo_product.upload_manager" class="%teo_product.upload_manager.class%">
-          <argument>%kernel.root_dir%</argument>
-      </service>
+        <service id="teo_product.upload_manager" class="%teo_product.upload_manager.class%">
+            <argument>%kernel.root_dir%</argument>
+        </service>
 
-       <service id="sonata.admin.product" class="Teo\ProductBundle\Admin\ProductAdmin">
-          <tag name="sonata.admin" manager_type="orm" group="Content" label="Products"/>
-          <argument />
-          <argument>Teo\ProductBundle\Entity\Product</argument>
-          <argument>TeoProductBundle:ProductCRUD</argument>
-          <call method="setTranslationDomain">
-              <argument>TeoProductBundle</argument>
-          </call>
-          <call method="setUploadManager">
-              <argument type="service" id="teo_product.upload_manager"/>
-          </call>
-      </service>
+        <service id="sonata.admin.product" class="Teo\ProductBundle\Admin\ProductAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Products"/>
+            <argument />
+            <argument>Teo\ProductBundle\Entity\Product</argument>
+            <argument>TeoProductBundle:ProductCRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>TeoProductBundle</argument>
+            </call>
+            <call method="setUploadManager">
+                <argument type="service" id="teo_product.upload_manager"/>
+            </call>
+        </service>
 
-       <service id="sonata.admin.image" class="Teo\ProductBundle\Admin\ImageAdmin">
-          <tag name="sonata.admin" manager_type="orm" group="Content" label="Images"/>
-          <argument />
-          <argument>Teo\ProductBundle\Entity\Image</argument>
-          <argument>TeoProductBundle:ImageCRUD</argument>
-          <call method="setTranslationDomain">
-              <argument>TeoProductBundle</argument>
-          </call>
-      </service>
+        <service id="sonata.admin.image" class="Teo\ProductBundle\Admin\ImageAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Images"/>
+            <argument />
+            <argument>Teo\ProductBundle\Entity\Image</argument>
+            <argument>TeoProductBundle:ImageCRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>TeoProductBundle</argument>
+            </call>
+        </service>
 
-       <service id="sonata.admin.attachment" class="Teo\ProductBundle\Admin\AttachmentAdmin">
-          <tag name="sonata.admin" manager_type="orm" group="Content" label="Attachments"/>
-          <argument />
-          <argument>Teo\ProductBundle\Entity\Attachment</argument>
-          <argument />
-          <call method="setTranslationDomain">
-              <argument>TeoProductBundle</argument>
-          </call>
-      </service>
+        <service id="sonata.admin.attachment" class="Teo\ProductBundle\Admin\AttachmentAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Attachments"/>
+            <argument />
+            <argument>Teo\ProductBundle\Entity\Attachment</argument>
+            <argument />
+            <call method="setTranslationDomain">
+                <argument>TeoProductBundle</argument>
+            </call>
+        </service>
 
-       <service id="sonata.admin.category" class="Teo\ProductBundle\Admin\CategoryAdmin">
-          <tag name="sonata.admin" manager_type="orm" group="Content" label="Categories"/>
-          <argument />
-          <argument>Teo\ProductBundle\Entity\Category</argument>
-          <argument>TeoProductBundle:CategoryCRUD</argument>
-          <call method="setTranslationDomain">
-              <argument>TeoProductBundle</argument>
-          </call>
-      </service>
+        <service id="sonata.admin.category" class="Teo\ProductBundle\Admin\CategoryAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Categories"/>
+            <argument />
+            <argument>Teo\ProductBundle\Entity\Category</argument>
+            <argument>TeoProductBundle:CategoryCRUD</argument>
+            <call method="setTranslationDomain">
+                <argument>TeoProductBundle</argument>
+            </call>
+        </service>
 
-   </services>
+    </services>
 </container>
