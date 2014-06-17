@@ -40,6 +40,10 @@ class TeoProductExtension extends Extension
             $container->getDefinition('sonata.admin.product')->addMethodCall('setUniqueCategory');
         }
 
+        if ($config['use_price']) {
+            $container->getDefinition('sonata.admin.product')->addMethodCall('setUsePrice');
+        }
+
         if ($config['leaf_only']) {
             $container->getDefinition('sonata.admin.product')->addMethodCall('setLeafOnly');
         }

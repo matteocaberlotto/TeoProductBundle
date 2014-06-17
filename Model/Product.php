@@ -439,4 +439,32 @@ class Product
                     'get' . ucfirst($method)
                 )) : '';
     }
+    /**
+     * @var float
+     */
+    private $price;
+
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     * @return Product
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float 
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }

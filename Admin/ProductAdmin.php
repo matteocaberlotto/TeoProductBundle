@@ -31,9 +31,16 @@ class ProductAdmin extends Admin
 
     protected $attachment = false;
 
+    protected $use_price = false;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
+    }
+
+    public function setUsePrice()
+    {
+        $this->use_price = true;
     }
 
     public function setAttachment()
@@ -107,6 +114,10 @@ class ProductAdmin extends Admin
                 'help' => 'extra options'
             ))
         ;
+
+        if ($this->use_price) {
+            $formMapper->add('price', 'money');
+        }
 
         if ($this->leaf_only) {
             $depth = $this->maximum_depth;
@@ -196,7 +207,7 @@ class ProductAdmin extends Admin
                 'label' => 'Preview',
                 'template' => 'TeoProductBundle:Admin:product_preview.html.twig'
             ))
-            ->add('slug')
+            ->addIdentifier('slug')
             ->add('translations', null, array(
                 'template' => 'TeoProductBundle:Admin:product_info.html.twig'
             ))
@@ -204,6 +215,10 @@ class ProductAdmin extends Admin
                 'template' => 'TeoProductBundle:Admin:product_categories_field.html.twig'
             ))
         ;
+
+        if ($this->use_price) {
+            $listMapper->add('price');
+        }
     }
 
     public function getTemplate($name)
