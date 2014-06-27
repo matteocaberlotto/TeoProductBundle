@@ -24,6 +24,15 @@ class CategoryRepository extends EntityRepository
         return $q->getQuery()->getResult();
     }
 
+    public function findOrdered()
+    {
+        $q = $this->createQueryBuilder('c');
+        $q
+            ->orderBy('c.position', 'ASC')
+            ;
+        return $q->getQuery()->getResult();
+    }
+
     public function getQueryForTag($tag)
     {
         $q = $this->createQueryBuilder('c');
@@ -31,6 +40,7 @@ class CategoryRepository extends EntityRepository
             ->innerJoin('c.tags', 't')
             ->andWhere('t.name = :name')
             ->setParameter('name', $tag)
+            ->orderBy('c.position', 'ASC')
             ;
         return $q;
     }
