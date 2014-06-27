@@ -204,10 +204,6 @@ class ProductAdmin extends Admin
                 'template' => 'TeoProductBundle:Admin:product_categories_field.html.twig'
             ))
         ;
-
-        if ($this->use_price) {
-            $listMapper->add('price');
-        }
     }
 
     public function getTemplate($name)
