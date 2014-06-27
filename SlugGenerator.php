@@ -6,15 +6,25 @@ class SlugGenerator
 {
     public static function generate($string, $inc = 0)
     {
-        $slug = strtolower($string);
-        $slug = preg_replace('/[^a-z]+/', ' ', $slug);
-        $slug = trim($slug);
-        $slug = preg_replace('/[\s]+/', '-', $slug);
+        // replace non letter or digits by -
+        $string = preg_replace('~[^\\pL\d]+~u', '-', $string);
+
+        // trim
+        $string = trim($string, '-');
+
+        // transliterate
+        $string = iconv('utf-8', 'us-ascii//TRANSLIT', $string);
+
+        // lowercase
+        $string = strtolower($string);
+
+        // remove unwanted characters
+        $string = preg_replace('~[^-\w]+~', '', $string);
 
         if ($inc) {
-            $slug .= '-' . $inc;
+            $string .= '-' . $inc;
         }
 
-        return $slug;
+        return $string;
     }
 }
