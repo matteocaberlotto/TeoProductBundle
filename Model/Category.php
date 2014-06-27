@@ -67,7 +67,7 @@ class Category
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -95,7 +95,7 @@ class Category
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
@@ -118,14 +118,14 @@ class Category
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -141,14 +141,14 @@ class Category
     public function setParent(Category $parent = null)
     {
         $this->parent = $parent;
-    
+
         return $this;
     }
 
     /**
      * Get parent
      *
-     * @return Category 
+     * @return Category
      */
     public function getParent()
     {
@@ -164,7 +164,7 @@ class Category
     public function addProduct(\Teo\ProductBundle\Model\Product $products)
     {
         $this->products[] = $products;
-    
+
         return $this;
     }
 
@@ -181,7 +181,7 @@ class Category
     /**
      * Get products
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function getProducts()
     {
@@ -202,7 +202,7 @@ class Category
     /**
      * Set products property
      *
-     * @return \Doctrine\Common\Collections\ArrayCollection 
+     * @return \Doctrine\Common\Collections\ArrayCollection
      */
     public function setProducts($products)
     {
@@ -221,7 +221,7 @@ class Category
     public function addCategories(Category $categories)
     {
         $this->categories[] = $categories;
-    
+
         return $this;
     }
 
@@ -238,7 +238,7 @@ class Category
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -341,7 +341,7 @@ class Category
     public function addTag(\Teo\ProductBundle\Model\Tag $tags)
     {
         $this->tags[] = $tags;
-    
+
         return $this;
     }
 
@@ -358,7 +358,7 @@ class Category
     /**
      * Get tags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
@@ -387,14 +387,14 @@ class Category
     public function setOptions($options)
     {
         $this->options = $options;
-    
+
         return $this;
     }
 
     /**
      * Get options
      *
-     * @return array 
+     * @return array
      */
     public function getOptions()
     {
