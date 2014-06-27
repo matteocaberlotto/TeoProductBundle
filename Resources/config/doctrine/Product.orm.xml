@@ -33,10 +33,6 @@
             <join-column name="category_id" referenced-column-name="id" />
           </inverse-join-columns>
         </join-table>
-
-        <cascade>
-          <all/>
-        </cascade>
     </many-to-many>
 
     <lifecycle-callbacks>
