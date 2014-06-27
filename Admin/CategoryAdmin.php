@@ -46,29 +46,15 @@ class CategoryAdmin extends Admin
                 'required' => false,
                 'fields' => array(
                     'title' => array(
-                        'locale_options' => array(
-                            'en' => array(
-                                'attr' => array(
-                                    'class' => 'span10'
-                            )),
-                            'it' => array(
-                                'attr' => array(
-                                    'class' => 'span10'
-                            ))
+                        'attr' => array(
+                            'class' => 'span10',
+                            'rows' => 8
                         )
                     ),
                     'description' => array(
-                        'locale_options' => array(
-                            'en' => array(
-                                'attr' => array(
-                                    'class' => 'span10',
-                                    'rows' => 8
-                            )),
-                            'it' => array(
-                                'attr' => array(
-                                    'class' => 'span10',
-                                    'rows' => 8
-                            ))
+                        'attr' => array(
+                            'class' => 'span10',
+                            'rows' => 8
                         )
                     )
                 )
