@@ -74,7 +74,7 @@ class Product
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -102,14 +102,14 @@ class Product
     public function setSlug($slug)
     {
         $this->slug = $slug;
-    
+
         return $this;
     }
 
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -125,7 +125,7 @@ class Product
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
@@ -148,7 +148,7 @@ class Product
     public function addImage(\Teo\ProductBundle\Model\Image $images)
     {
         $this->images[] = $images;
-    
+
         return $this;
     }
 
@@ -171,7 +171,7 @@ class Product
     public function addAttachment(\Teo\ProductBundle\Model\Attachment $attachments)
     {
         $this->attachments[] = $attachments;
-    
+
         return $this;
     }
 
@@ -188,7 +188,7 @@ class Product
     /**
      * Get images
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getImages()
     {
@@ -203,7 +203,7 @@ class Product
     public function setImages($images)
     {
         $this->images = $images;
-    
+
         return $this;
     }
 
@@ -216,7 +216,7 @@ class Product
     public function addCategory(\Teo\ProductBundle\Model\Category $category)
     {
         $this->categories[] = $category;
-    
+
         return $this;
     }
 
@@ -233,7 +233,7 @@ class Product
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -266,14 +266,14 @@ class Product
     public function setCreated($created)
     {
         $this->created = $created;
-    
+
         return $this;
     }
 
     /**
      * Get created
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -289,14 +289,14 @@ class Product
     public function setUpdated($updated)
     {
         $this->updated = $updated;
-    
+
         return $this;
     }
 
     /**
      * Get updated
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getUpdated()
     {
@@ -346,14 +346,14 @@ class Product
     public function setExtras($extras)
     {
         $this->extras = $extras;
-    
+
         return $this;
     }
 
     /**
      * Get extra
      *
-     * @return array 
+     * @return array
      */
     public function getExtras()
     {
@@ -438,33 +438,5 @@ class Product
                     $translation,
                     'get' . ucfirst($method)
                 )) : '';
-    }
-    /**
-     * @var float
-     */
-    private $price;
-
-
-    /**
-     * Set price
-     *
-     * @param float $price
-     * @return Product
-     */
-    public function setPrice($price)
-    {
-        $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get price
-     *
-     * @return float 
-     */
-    public function getPrice()
-    {
-        return $this->price;
     }
 }

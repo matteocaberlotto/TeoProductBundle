@@ -31,16 +31,9 @@ class ProductAdmin extends Admin
 
     protected $attachment = false;
 
-    protected $use_price = false;
-
     public function setUniqueCategory()
     {
         $this->unique_category = true;
-    }
-
-    public function setUsePrice()
-    {
-        $this->use_price = true;
     }
 
     public function setAttachment()
@@ -114,10 +107,6 @@ class ProductAdmin extends Admin
                 'help' => 'extra options'
             ))
         ;
-
-        if ($this->use_price) {
-            $formMapper->add('price', 'money');
-        }
 
         if ($this->leaf_only) {
             $depth = $this->maximum_depth;
