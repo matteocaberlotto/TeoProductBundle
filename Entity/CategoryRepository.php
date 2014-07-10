@@ -33,6 +33,16 @@ class CategoryRepository extends EntityRepository
         return $q->getQuery()->getResult();
     }
 
+    public function findRoots()
+    {
+        $q = $this->createQueryBuilder('c');
+        $q
+            ->where('c.parent is NULL')
+            ->orderBy('c.position', 'ASC')
+            ;
+        return $q->getQuery()->getResult();
+    }
+
     public function getQueryForTag($tag)
     {
         $q = $this->createQueryBuilder('c');
