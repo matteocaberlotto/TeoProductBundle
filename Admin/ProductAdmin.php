@@ -31,6 +31,8 @@ class ProductAdmin extends Admin
 
     protected $attachment = false;
 
+    protected $use_available = false;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
@@ -77,6 +79,11 @@ class ProductAdmin extends Admin
         $this->maximum_depth = $depth;
     }
 
+    public function setUseAvailable()
+    {
+        $this->use_available = true;
+    }
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -87,6 +94,12 @@ class ProductAdmin extends Admin
             'required' => false,
             'fields' => $this->fields_config
         ));
+
+        if ($this->use_available) {
+            $formMapper
+                ->add('available')
+                ;
+        }
 
         $formMapper
             ->add('position', null, array(

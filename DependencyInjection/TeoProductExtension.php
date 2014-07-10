@@ -48,6 +48,10 @@ class TeoProductExtension extends Extension
             $container->getDefinition('sonata.admin.product')->addMethodCall('setAttachment');
         }
 
+        if ($config['use_available']) {
+            $container->getDefinition('sonata.admin.product')->addMethodCall('setUseAvailable');
+        }
+
         $container->getDefinition('sonata.admin.category')->addMethodCall('setExtraOptions', array($config['category_extra_options']));
         $container->getDefinition('sonata.admin.product')->addMethodCall('setExtraOptions', array($config['product_extra_options']));
         $container->getDefinition('sonata.admin.product')->addMethodCall('setTranslatableFieldsConfig', array($config['translatable_fields_config']));

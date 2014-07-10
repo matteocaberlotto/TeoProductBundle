@@ -51,6 +51,12 @@ class Product
      */
     protected $updated;
 
+    /**
+     * @var boolean
+     */
+    protected $available;
+
+
     // not mapped, added by Teo\ProductBundle
     protected $current_locale;
 
@@ -438,5 +444,28 @@ class Product
                     $translation,
                     'get' . ucfirst($method)
                 )) : '';
+    }
+
+    /**
+     * Set available
+     *
+     * @param boolean $available
+     * @return Product
+     */
+    public function setAvailable($available)
+    {
+        $this->available = $available;
+
+        return $this;
+    }
+
+    /**
+     * Get available
+     *
+     * @return boolean
+     */
+    public function getAvailable()
+    {
+        return $this->available;
     }
 }
