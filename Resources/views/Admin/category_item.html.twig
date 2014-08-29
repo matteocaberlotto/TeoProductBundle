@@ -1,4 +1,4 @@
-<li class="cat" data-id="{{ object.getId() }}">
+<li class="cat" id="cat-id-{{ object.getId() }}" data-id="{{ object.getId() }}">
     <span>
         <i class="icon-folder-open"></i>
         <a class="category" href="{{ admin.generateObjectUrl('edit', object) }}">
@@ -24,6 +24,13 @@
         <i class="icon-remove icon-white"></i>
     </a>
 
+    {% if show_products %}
+        {% if object.hasProducts() %}
+            <a data-toggle="collapse" title="View products" class="tooltip-trigger btn btn-mini btn-primary" data-parent="#cat-id-{{ object.getId() }}" href="#prods-{{ object.getId() }}">
+                <i class="icon-eye-open icon-white"></i>
+            </a>
+        {% endif %}
+    {% endif %}
 
     {% if object.hasChildren() %}
 
@@ -38,7 +45,7 @@
 
     {% if show_products %}
         {% if object.hasProducts() %}
-        <ul class="prod-list">
+        <ul class="prod-list collapse" id="prods-{{ object.getId() }}" style="height:0">
             {% for product in object.getOrderedProducts() %}
                 {% include 'TeoProductBundle:Admin:category_product.html.twig' %}
             {% endfor %}
