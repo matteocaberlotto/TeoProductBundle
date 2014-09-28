@@ -332,6 +332,25 @@ class Category
         return implode(' > ', $this->getPath());
     }
 
+    public function hasTag($name)
+    {
+        $tags = $this->getTags();
+
+        foreach ($tags as $tag)
+        {
+            if ($tag->getName() == $name) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function hasParent()
+    {
+        return !empty($this->parent);
+    }
+
     /**
      * Add tags
      *

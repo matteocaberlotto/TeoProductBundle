@@ -400,6 +400,22 @@ class Product
         return $this;
     }
 
+    public function hasTag($name)
+    {
+        $categories = $this->getCategories();
+        foreach ($categories as $category) {
+            if ($category->hasTag('highlight')) {
+                return true;
+            }
+
+            if ($category->hasParent() && $category->getParent()->hasTag('highlight')) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Here follows the A2lix bundle trait Translatable
      */
