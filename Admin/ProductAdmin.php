@@ -38,6 +38,16 @@ class ProductAdmin extends Admin
         $this->unique_category = true;
     }
 
+    public function setLocales($locales)
+    {
+        $this->locales = $locales;
+    }
+
+    public function setupLocales($provider)
+    {
+        $this->setLocales($provider->languages());
+    }
+
     public function setAttachment()
     {
         $this->attachment = true;
@@ -90,10 +100,16 @@ class ProductAdmin extends Admin
         $imagesToFileTransformer = new ImagesToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
         $attachmentToFileTransformer = new AttachmentToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
 
-        $formMapper->add('translations', 'a2lix_translations', array(
+        $options = array(
             'required' => false,
             'fields' => $this->fields_config
-        ));
+        );
+
+        if (!empty($this->locales)) {
+            $options['locales'] = $this->locales;
+        }
+
+        $formMapper->add('translations', 'a2lix_translations', $options);
 
         if ($this->use_available) {
             $formMapper
