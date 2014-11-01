@@ -39,7 +39,17 @@ class Product
     /**
      * @var array
      */
-    private $extras;
+    protected $extras;
+
+    /**
+     * @var array
+     */
+    protected $variants;
+
+    /**
+     * @var array
+     */
+    protected $additions;
 
     /**
      * @var \DateTime
@@ -483,5 +493,51 @@ class Product
     public function getAvailable()
     {
         return $this->available;
+    }
+
+    /**
+     * Set variants
+     *
+     * @param array $variants
+     * @return Product
+     */
+    public function setVariants($variants)
+    {
+        $this->variants = $variants;
+
+        return $this;
+    }
+
+    /**
+     * Get variants
+     *
+     * @return array
+     */
+    public function getVariants()
+    {
+        return $this->variants;
+    }
+
+    /**
+     * Set additions
+     *
+     * @param array $additions
+     * @return Product
+     */
+    public function setAdditions($additions)
+    {
+        $this->additions = $additions;
+
+        return $this;
+    }
+
+    /**
+     * Get additions
+     *
+     * @return array
+     */
+    public function getAdditions()
+    {
+        return $this->additions;
     }
 }
