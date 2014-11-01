@@ -1,0 +1,7 @@
+<td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
+    {% if value is not empty %}
+        {% for addition in value %}
+            <span><strong>+ {{ addition }}</strong></span><br>
+        {% endfor %}
+    {% endif %}
+</td>

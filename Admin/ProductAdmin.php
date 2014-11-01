@@ -33,6 +33,8 @@ class ProductAdmin extends Admin
 
     protected $use_available = false;
 
+    protected $use_variant = false;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
@@ -94,6 +96,11 @@ class ProductAdmin extends Admin
         $this->use_available = true;
     }
 
+    public function setUseVariant()
+    {
+        $this->use_variant = true;
+    }
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
@@ -136,6 +143,23 @@ class ProductAdmin extends Admin
                 'help' => 'extra options'
             ))
         ;
+
+        if ($this->use_variant) {
+            $formMapper
+                ->add('variants', 'collection', array(
+                    'allow_add' => true,
+                    'prototype_name' => 'variante',
+                    'label' => 'Variante prodotto',
+                    'allow_delete' => true
+                ))
+                ->add('additions', 'collection', array(
+                    'allow_add' => true,
+                    'prototype_name' => 'variante',
+                    'label' => 'Ingredienti addizionabili',
+                    'allow_delete' => true
+                ))
+                ;
+        }
 
         if ($this->leaf_only) {
             $depth = $this->maximum_depth;
@@ -233,6 +257,17 @@ class ProductAdmin extends Admin
                 'template' => 'TeoProductBundle:Admin:product_categories_field.html.twig'
             ))
         ;
+
+        if ($this->use_variant) {
+            $listMapper
+                ->add('variants', null, array(
+                'template' => 'TeoProductBundle:Admin:product_variants.html.twig'
+            ))
+                ->add('additions', null, array(
+                'template' => 'TeoProductBundle:Admin:product_additions.html.twig'
+            ))
+                ;
+        }
     }
 
     public function getTemplate($name)

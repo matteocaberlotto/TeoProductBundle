@@ -1,0 +1,9 @@
+<td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
+    {% if value is not empty %}
+    <ul>
+        {% for variant in value %}
+            <li><strong>{{ variant }}</strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</td>
