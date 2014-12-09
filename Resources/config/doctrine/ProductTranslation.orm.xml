@@ -4,5 +4,9 @@
     <id name="id" type="integer" column="id">
       <generator strategy="AUTO"/>
     </id>
+
+    <indexes>
+        <index name="title_idx" columns="title"/>
+    </indexes>
   </entity>
 </doctrine-mapping>
