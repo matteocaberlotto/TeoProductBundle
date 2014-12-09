@@ -194,7 +194,7 @@ class ProductAdmin extends Admin
 
         $formMapper
             ->add(
-                $formMapper->create('images', 'collection', array(
+                $formMapper->create('images', 'sonata_type_native_collection', array(
                     'data' => $this->getSubject()->getImages(),
                     'data_class' => null,
                     'allow_add' => true,
@@ -214,7 +214,7 @@ class ProductAdmin extends Admin
         if ($this->attachment) {
             $formMapper
                 ->add(
-                    $formMapper->create('attachments', 'collection', array(
+                    $formMapper->create('attachments', 'sonata_type_native_collection', array(
                         'data' => $this->getSubject()->getAttachments(),
                         'data_class' => null,
                         'allow_add' => true,
