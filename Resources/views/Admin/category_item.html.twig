@@ -1,33 +1,33 @@
 <li class="cat" id="cat-id-{{ object.getId() }}" data-id="{{ object.getId() }}">
     <span>
-        <i class="icon-folder-open"></i>
+        <i class="fa fa-folder"></i>
         <a class="category" href="{{ admin.generateObjectUrl('edit', object) }}">
              {{ object.title() }}
         </a>
     </span>
 
     <a data-toggle="tooltip" title="Edit category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('edit', object) }}">
-        <i class="icon-pencil icon-white"></i>
+        <i class="fa fa-pencil icon-white"></i>
     </a>
 
     {% if level < max_depth %}
     <a data-toggle="tooltip" title="Add child category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('create', object, { "parent": object.getId() }) }}">
-        <i class="icon-plus icon-white"></i>
+        <i class="fa fa-plus icon-white"></i>
     </a>
     {% endif %}
 
     <a data-toggle="tooltip" title="Reorder category" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
-        <i class="icon-resize-vertical icon-white"></i>
+        <i class="fa fa-arrows-v icon-white"></i>
     </a>
 
     <a data-toggle="tooltip" title="Remove category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('delete', object) }}">
-        <i class="icon-remove icon-white"></i>
+        <i class="fa fa-times icon-white"></i>
     </a>
 
     {% if show_products %}
         {% if object.hasProducts() %}
             <a data-toggle="collapse" title="View products" class="tooltip-trigger btn btn-mini btn-primary" data-parent="#cat-id-{{ object.getId() }}" href="#prods-{{ object.getId() }}">
-                <i class="icon-eye-open icon-white"></i>
+                <i class="fa fa-eye icon-white"></i>
             </a>
         {% endif %}
     {% endif %}
