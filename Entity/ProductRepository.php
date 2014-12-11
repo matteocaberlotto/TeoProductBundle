@@ -26,4 +26,17 @@ class ProductRepository extends EntityRepository
 
         $this->_em->flush();
     }
+
+    public function searchProduct($search)
+    {
+        $q = $this->createQueryBuilder('p');
+
+        $q
+            ->select('p', 't')
+            ->leftJoin('p.translations', 't')
+            ->where('t.title LIKE :search')
+            ->setParameter('search', '%' . $search . '%');
+
+        return $q->getQuery()->getResult();
+    }
 }
