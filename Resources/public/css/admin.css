@@ -140,3 +140,12 @@ ul.categories-tree li.product {
 .tabbable .select2-container {
     min-width: 400px !important;
 }
+
+.teo_product_images .form-group > div {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.teo_product_images input[type="file"] {
+    display: inline-block;
+}

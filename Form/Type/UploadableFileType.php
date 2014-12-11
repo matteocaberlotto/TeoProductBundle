@@ -27,7 +27,7 @@ class UploadableFileType extends AbstractType
             if (preg_match('/(gif|jpeg|png|jpg)$/i', $path)) {
                 // that's an image, show preview.
                 $view->vars['is_image'] = true;
-                $label = sprintf('<img style="width:200px" src="%s" />', $path . '?rand=' . md5(mt_rand()) . md5(mt_rand()));
+                $label = sprintf('<img style="width:200px;display:inline-block" src="%s" />', $path . '?rand=' . md5(mt_rand()) . md5(mt_rand()));
                 $view->vars['image_info'] = getimagesize($view->vars['value']->getPathname());
             } else {
                 // that's a file, show filename.
