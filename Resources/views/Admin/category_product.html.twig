@@ -5,13 +5,13 @@
             {% if product.hasPreview() %}
                 <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
             {% else %}
-                <i class="icon-barcode"></i>
+                <i class="fa fa-barcode"></i>
             {% endif %}
             {{ product.title() }}
         </a>
 
         <a title="Reorder product" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
-            <i class="fa fa-arrow-v icon-white"></i>
+            <i class="fa fa-arrows-v icon-white"></i>
         </a>
     </small>
 </li>
