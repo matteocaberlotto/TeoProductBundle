@@ -14,6 +14,16 @@ class Category
     protected $id;
 
     /**
+     * @var integer
+     */
+    protected $title;
+
+    /**
+     * @var integer
+     */
+    protected $description;
+
+    /**
      * @var string
      */
     protected $slug;
@@ -48,15 +58,13 @@ class Category
      */
     protected $categories;
 
-    // not mapped, added by Teo\ProductBundle
-    protected $current_locale;
+    protected $locale;
 
     protected $tags;
 
     public function __construct() {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->translations = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     public function __toString()
@@ -72,6 +80,35 @@ class Category
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setTranslatableLocale($locale)
+    {
+        $this->locale = $locale;
+    }
+
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getDescription($description)
+    {
+        return $this->description;
+    }
+
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     public function setCurrentLocale($locale)
@@ -434,51 +471,5 @@ class Category
         $this->option[$key] = $value;
 
         return $this;
-    }
-
-    /**
-     * Here follows the A2lix bundle trait Translatable
-     */
-
-    public function getTranslations()
-    {
-        return $this->translations = $this->translations ? : new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    public function setTranslations(\Doctrine\Common\Collections\ArrayCollection $translations)
-    {
-        $this->translations = $translations;
-        return $this;
-    }
-
-    public function addTranslation($translation)
-    {
-        $this->getTranslations()->set($translation->getLocale(), $translation);
-        $translation->setTranslatable($this);
-        return $this;
-    }
-
-    public function removeTranslation($translation)
-    {
-        $this->getTranslations()->removeElement($translation);
-    }
-
-    public function getCurrentTranslation()
-    {
-        foreach ($this->getTranslations() as $translation) {
-            if ($translation->getLocale() == $this->current_locale) {
-                return $translation;
-            }
-        }
-        return $this->getTranslations()->first();
-    }
-
-    public function __call($method, $args)
-    {
-        return ($translation = $this->getCurrentTranslation()) ?
-                call_user_func(array(
-                    $translation,
-                    'get' . ucfirst($method)
-                )) : '';
     }
 }

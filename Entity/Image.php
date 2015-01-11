@@ -8,6 +8,5 @@ use Teo\ProductBundle\Model\Image as BaseImage;
 /**
  * Image
  */
-class Image extends BaseImage
-{
-}
+abstract class Image extends BaseImage
+{ }

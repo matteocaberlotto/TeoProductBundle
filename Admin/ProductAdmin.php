@@ -35,6 +35,10 @@ class ProductAdmin extends Admin
 
     protected $use_variant = false;
 
+    protected $product_class = false;
+
+    protected $category_class = false;
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
@@ -99,6 +103,16 @@ class ProductAdmin extends Admin
     public function setUseVariant()
     {
         $this->use_variant = true;
+    }
+
+    public function setModelClass($class)
+    {
+        $this->product_class = $class;
+    }
+
+    public function setCategoryClass($class)
+    {
+        $this->category_class = $class;
     }
 
     // Fields to be shown on create/edit forms

@@ -1,44 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
-  <entity repository-class="Teo\ProductBundle\Entity\ProductRepository" name="Teo\ProductBundle\Entity\Product" table="product">
-    <id name="id" type="integer" column="id">
-      <generator strategy="AUTO"/>
-    </id>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+    <mapped-superclass name="Teo\ProductBundle\Entity\Product">
 
-    <one-to-many field="images" target-entity="Teo\ProductBundle\Entity\Image" mapped-by="product">
-      <order-by>
-          <order-by-field name="position" direction="ASC" />
-      </order-by>
-      <cascade>
-        <all/>
-      </cascade>
-    </one-to-many>
+        <field name="title" type="string" length="128">
+            <gedmo:translatable/>
+        </field>
 
-    <one-to-many field="attachments" target-entity="Teo\ProductBundle\Entity\Attachment" mapped-by="product">
-      <order-by>
-          <order-by-field name="position" direction="ASC" />
-      </order-by>
-      <cascade>
-        <all/>
-      </cascade>
-    </one-to-many>
+        <field name="description" type="text">
+            <gedmo:translatable/>
+        </field>
 
-    <many-to-many field="categories" target-entity="Teo\ProductBundle\Entity\Category" inversed-by="products">
+        <field name="price" type="text">
+            <gedmo:translatable/>
+        </field>
 
-        <join-table name="products_categories">
-          <join-columns>
-            <join-column name="product_id" referenced-column-name="id" />
-          </join-columns>
-          <inverse-join-columns>
-            <join-column name="category_id" referenced-column-name="id" />
-          </inverse-join-columns>
-        </join-table>
-    </many-to-many>
+        <field name="slug" type="string" column="slug" length="255" unique="true" nullable="true"/>
+        <field name="extras" type="array" nullable="true"/>
+        <field name="position" type="integer" nullable="true"/>
+        <field name="available" type="boolean" nullable="true"/>
+        <field name="variants" type="array" nullable="true"/>
+        <field name="additions" type="array" nullable="true"/>
 
-    <lifecycle-callbacks>
-      <lifecycle-callback type="prePersist" method="setCreatedAtValue"/>
-      <lifecycle-callback type="prePersist" method="setUpdatedAtValue"/>
-      <lifecycle-callback type="preUpdate" method="setUpdatedAtValue"/>
-    </lifecycle-callbacks>
-  </entity>
+        <field name="created" type="datetime"/>
+        <field name="updated" type="datetime"/>
+    </mapped-superclass>
 </doctrine-mapping>

@@ -8,16 +8,5 @@ use Teo\ProductBundle\Model\Product as BaseProduct;
 /**
  * Product
  */
-class Product extends BaseProduct
-{
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     */
-    protected $translations;
-
-    public static function getTranslationEntityClass()
-    {
-        return __CLASS__ . 'Translation';
-    }
-}
+abstract class Product extends BaseProduct
+{ }

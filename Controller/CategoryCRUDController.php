@@ -26,7 +26,7 @@ class CategoryCRUDController extends CRUDController
         // set the theme for the current Admin Form
         $this->get('twig')->getExtension('form')->renderer->setTheme($formView, $this->admin->getFilterTheme());
 
-        $rootCategories = $this->container->get('doctrine')->getRepository('TeoProductBundle:Category')->findBy(array(
+        $rootCategories = $this->container->get('doctrine')->getRepository($this->container->getParameter('teo_product.category.class'))->findBy(array(
             'parent' => null
         ));
 

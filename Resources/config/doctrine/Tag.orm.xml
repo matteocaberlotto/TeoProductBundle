@@ -1,28 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
-    <entity name="Teo\ProductBundle\Entity\Tag" table="category_tag" repository-class="TagRepository">
-        <id name="id" type="integer" column="id">
-            <generator strategy="AUTO"/>
-        </id>
-
-        <many-to-many target-entity="Teo\ProductBundle\Entity\Category" field="categories" inversed-by="tags">
-
-            <join-table name="category_category_tag">
-              <join-columns>
-                <join-column name="tag_id" referenced-column-name="id" />
-              </join-columns>
-              <inverse-join-columns>
-                <join-column name="category_id" referenced-column-name="id" />
-              </inverse-join-columns>
-            </join-table>
-
-            <cascade>
-              <all/>
-            </cascade>
-        </many-to-many>
-
-    </entity>
+    <mapped-superclass name="Teo\ProductBundle\Entity\Tag">
+        <field name="name" type="string"/>
+    </mapped-superclass>
 
 </doctrine-mapping>

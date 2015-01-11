@@ -12,7 +12,7 @@ $(".teo_product_images").sortable({
         $.ajax({
             type: 'POST',
             data: { ids: ids },
-            url: "{{ path('admin_teo_product_image_reorder') }}",
+            url: "{{ get_service('sonata.admin.image').generateUrl('reorder') }}",
             success: function () {
                 // alert('Done :)');
             }
