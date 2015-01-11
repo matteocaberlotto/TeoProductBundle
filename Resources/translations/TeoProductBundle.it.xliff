@@ -10,6 +10,35 @@
                 <source>Products</source>
                 <target>Prodotti</target>
             </trans-unit>
+            <trans-unit id="transl">
+                <source>Translations</source>
+                <target>Traduzioni</target>
+            </trans-unit>
+            <trans-unit id="provider">
+                <source>Provider</source>
+                <target>Fornitore</target>
+            </trans-unit>
+            <trans-unit id="providers">
+                <source>Providers</source>
+                <target>Fornitori</target>
+            </trans-unit>
+            <trans-unit id="slug">
+                <source>Slug</source>
+                <target>Indirizzo</target>
+            </trans-unit>
+            <trans-unit id="actions">
+                <source>Actions</source>
+                <target>Azioni</target>
+            </trans-unit>
+            <trans-unit id="users">
+                <source>Users</source>
+                <target>Utenti</target>
+            </trans-unit>
+            <trans-unit id="categories_struct">
+                <source>Categories structure</source>
+                <target>Alberatura categorie</target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

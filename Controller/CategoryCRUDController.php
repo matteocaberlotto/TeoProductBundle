@@ -81,7 +81,7 @@ class CategoryCRUDController extends CRUDController
                     ));
                 }
 
-                $this->addFlash('sonata_flash_success','flash_create_success');
+                $this->addFlash('sonata_flash_success', 'flash_create_success');
                 // redirect to edit mode
                 return $this->redirectTo($object);
             }
@@ -99,7 +99,7 @@ class CategoryCRUDController extends CRUDController
         }
 
         if ($this->getRequest()->get('parent')) {
-            $cat = $this->container->get('doctrine')->getRepository('TeoProductBundle:Category')->find($this->getRequest()->get('parent'));
+            $cat = $this->container->get('doctrine')->getRepository($this->container->getParameter('teo_product.category.class'))->find($this->getRequest()->get('parent'));
             $form['parent']->setData($cat);
         }
 

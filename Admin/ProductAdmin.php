@@ -39,6 +39,13 @@ class ProductAdmin extends Admin
 
     protected $category_class = false;
 
+    protected $transformers = array();
+
+    public function addTrasformer($transformer)
+    {
+        $this->transformers []= $transformer;
+    }
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
@@ -186,14 +193,10 @@ class ProductAdmin extends Admin
         }
 
         if ($this->unique_category) {
-
-            $category = $this->getSubject()->getCategories();
-
             $formMapper->add(
                 $formMapper->create('categories', 'entity', array(
-                    'class' => 'Teo\ProductBundle\Entity\Category',
-                    'property' => 'pathString',
-                    'data' => $category->first(),
+                    'class' => $this->category_class,
+                    'data' => $this->getSubject()->getCategories()->first(),
                     'required' => false,
                     'label' => 'Category'
                 ))->addModelTransformer(new CategoryToCollectionTransformer)
@@ -245,6 +248,10 @@ class ProductAdmin extends Admin
                 )
             ;
         }
+
+        foreach ($this->transformers as $transformer) {
+            $transformer->configureFormFields($formMapper);
+        }
     }
 
     // Fields to be shown on filter forms
@@ -259,6 +266,10 @@ class ProductAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->add('edit', null, array(
+                'label' => 'Actions',
+                'template' => 'TeoProductBundle:Admin:product_edit.html.twig'
+                ))
             ->add('images', null, array(
                 'label' => 'Preview',
                 'template' => 'TeoProductBundle:Admin:product_preview.html.twig'

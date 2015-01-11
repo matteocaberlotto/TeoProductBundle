@@ -15,6 +15,13 @@ class CategoryAdmin extends Admin
 {
     protected $unique_category, $category_extra_options;
 
+    protected $transformers = array();
+
+    public function addTrasformer($transformer)
+    {
+        $this->transformers []= $transformer;
+    }
+
     public function setUniqueCategory()
     {
         $this->unique_category = true;
@@ -62,7 +69,6 @@ class CategoryAdmin extends Admin
 
         $formMapper
             ->add('parent', null, array(
-                'property' => 'pathString',
                 'help' => 'the parent category'
             ))
             ->add('slug', null, array(
@@ -92,7 +98,9 @@ class CategoryAdmin extends Admin
             )
         ;
 
-
+        foreach ($this->transformers as $transformer) {
+            $transformer->configureFormFields($formMapper);
+        }
     }
 
     // Fields to be shown on filter forms

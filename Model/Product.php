@@ -14,16 +14,6 @@ class Product
     /**
      * @var integer
      */
-    protected $title;
-
-    /**
-     * @var integer
-     */
-    protected $description;
-
-    /**
-     * @var integer
-     */
     protected $price;
 
     /**
@@ -118,30 +108,6 @@ class Product
     public function getId()
     {
         return $this->id;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDescription($description)
-    {
-        return $this->description;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
     }
 
     public function setCurrentLocale($locale)

@@ -14,16 +14,6 @@ class Category
     protected $id;
 
     /**
-     * @var integer
-     */
-    protected $title;
-
-    /**
-     * @var integer
-     */
-    protected $description;
-
-    /**
      * @var string
      */
     protected $slug;
@@ -85,30 +75,6 @@ class Category
     public function setTranslatableLocale($locale)
     {
         $this->locale = $locale;
-    }
-
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    public function setTitle($title)
-    {
-        $this->title = $title;
-
-        return $this;
-    }
-
-    public function getDescription($description)
-    {
-        return $this->description;
-    }
-
-    public function setDescription($description)
-    {
-        $this->description = $description;
-
-        return $this;
     }
 
     public function setCurrentLocale($locale)
