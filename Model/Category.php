@@ -318,13 +318,13 @@ class Category
 
     public function getPath()
     {
-        $path = array(ucfirst($this->getSlug()));
+        $path = array(ucfirst($this->getTitle()));
 
         $current = $this;
 
         while ($current->getParent() instanceof Category) {
             $current = $current->getParent();
-            $path []= ucfirst($current->getSlug());
+            $path []= ucfirst($current->getTitle());
         }
 
         return array_reverse($path);
