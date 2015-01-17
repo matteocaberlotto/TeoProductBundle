@@ -1,7 +1,7 @@
 <li class="prod" data-id="{{ product.getId() }}">
     <small>
 
-        <a class="product alert-warning" href="{{ path('admin_teo_product_product_edit', { "id": product.getId() }) }}">
+        <a class="product alert-warning" href="{{ get_service('sonata.admin.product').generateUrl('edit', {"id": product.id}) }}">
             {% if product.hasPreview() %}
                 <img style="max-width:50px;max-height:50px;" src="{{ product.getPreview().getPath() }}" />
             {% else %}
