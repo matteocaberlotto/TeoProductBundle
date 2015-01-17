@@ -112,11 +112,6 @@ class ProductAdmin extends Admin
         $this->use_variant = true;
     }
 
-    public function setModelClass($class)
-    {
-        $this->product_class = $class;
-    }
-
     public function setCategoryClass($class)
     {
         $this->category_class = $class;
