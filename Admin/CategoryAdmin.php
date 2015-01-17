@@ -179,7 +179,7 @@ class CategoryAdmin extends Admin
             while (count($collision)) {
                 $slug = SlugGenerator::generate($title, $inc);
 
-                $collision = $this->getModelManager()->findOneBy('TeoProductBundle:Category', array(
+                $collision = $this->getModelManager()->findOneBy($this->getClass(), array(
                     'slug' => $slug
                 ));
 
