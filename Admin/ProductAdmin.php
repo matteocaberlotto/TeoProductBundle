@@ -331,7 +331,7 @@ class ProductAdmin extends Admin
             while (count($collision)) {
                 $slug = SlugGenerator::generate($title, $inc);
 
-                $collision = $this->getModelManager()->findOneBy('TeoProductBundle:Product', array(
+                $collision = $this->getModelManager()->findOneBy($this->getClass(), array(
                     'slug' => $slug
                 ));
 
