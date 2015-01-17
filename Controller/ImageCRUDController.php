@@ -10,7 +10,7 @@ class ImageCRUDController extends CRUDController
     public function reorderAction()
     {
         $ids = $this->getRequest()->get('ids');
-        $this->getDoctrine()->getRepository('TeoProductBundle:Image')->reorder($ids);
+        $this->getDoctrine()->getRepository($this->admin->getClass())->reorder($ids);
         return new JsonResponse(array('result' => true), 200);
     }
 
