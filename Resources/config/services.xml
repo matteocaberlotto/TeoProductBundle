@@ -6,7 +6,6 @@
 
 
     <parameters>
-        <parameter key="teo_product.category.class">Teo\ProductBundle\Entity\Category</parameter>
         <parameter key="teo_product.uploadable.type.class">Teo\ProductBundle\Form\Type\UploadableFileType</parameter>
         <parameter key="teo_product.colorpicker.type.class">Teo\ProductBundle\Form\Type\ColorpickerType</parameter>
         <parameter key="teo_product.youtube_video.type.class">Teo\ProductBundle\Form\Type\YoutubeVideoType</parameter>
@@ -31,11 +30,11 @@
         </service> -->
 
         <service id="teo.products" class="Teo\ProductBundle\Entity\ProductRepository" factory-service="doctrine" factory-method="getRepository">
-            <argument>Teo\ProductBundle\Entity\Product</argument>
+            <argument>%teo_product.product.class%</argument>
         </service>
 
         <service id="teo.categories" class="Teo\ProductBundle\Entity\CategoryRepository" factory-service="doctrine" factory-method="getRepository">
-            <argument>Teo\ProductBundle\Entity\Category</argument>
+            <argument>%teo_product.category.class%</argument>
         </service>
 
         <service id="teo.twig_extension" class="Teo\ProductBundle\Extension\Twig">

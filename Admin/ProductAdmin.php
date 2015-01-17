@@ -305,6 +305,7 @@ class ProductAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('reorder');
+        $collection->add('search');
     }
 
     public function prePersist($product)
