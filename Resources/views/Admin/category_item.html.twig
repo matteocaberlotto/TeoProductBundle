@@ -32,6 +32,10 @@
         {% endif %}
     {% endif %}
 
+    <a data-toggle="tooltip" title="Create product" class="tooltip-trigger btn btn-mini btn-primary" href="{{ get_service('sonata.admin.product').generateUrl('create', {'parent': object.id}) }}">
+        <i class="fa fa-barcode icon-white"></i>
+    </a>
+
     {% if object.hasChildren() %}
 
     {% set childLevel = level + 1 %}
