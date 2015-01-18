@@ -27,7 +27,7 @@
     {% if show_products %}
         {% if object.hasProducts() %}
             <a data-toggle="collapse" title="View products" class="tooltip-trigger btn btn-mini btn-primary" data-parent="#cat-id-{{ object.getId() }}" href="#prods-{{ object.getId() }}">
-                <i class="fa fa-eye icon-white"></i>
+                <i data-toggle="tooltip" title="Show/hide products" class="fa fa-eye icon-white"></i>
             </a>
         {% endif %}
     {% endif %}
