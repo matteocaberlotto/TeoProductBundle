@@ -11,6 +11,7 @@ class ImageCRUDController extends CRUDController
     {
         $ids = $this->getRequest()->get('ids');
         $this->getDoctrine()->getRepository($this->admin->getClass())->reorder($ids);
+
         return new JsonResponse(array('result' => true), 200);
     }
 
@@ -39,8 +40,7 @@ class ImageCRUDController extends CRUDController
 
             $vector = $this->getRequest()->get('v');
 
-            switch ( $source_type )
-            {
+            switch ($source_type) {
             case IMAGETYPE_GIF:
                 $source_gdim = imagecreatefromgif($source_path);
                 break;
@@ -62,8 +62,7 @@ class ImageCRUDController extends CRUDController
                 $dest = imagecreatetruecolor($width, $height);
                 imagecopy($dest, $source_gdim, 0, 0, $vector[0], $vector[1], $width, $height);
 
-                switch ( $source_type )
-                {
+                switch ($source_type) {
                 case IMAGETYPE_GIF:
                     imagegif($dest, $source_path);
                     break;
@@ -101,8 +100,7 @@ class ImageCRUDController extends CRUDController
         $path = $this->getRequest()->get('path');
         $source_path = $this->container->getParameter('kernel.root_dir') . "/../web" . $this->getRequest()->get('path');
         list( $source_width, $source_height, $source_type ) = getimagesize($source_path);
-        switch ( $source_type )
-        {
+        switch ($source_type) {
         case IMAGETYPE_GIF:
             $source_gdim = imagecreatefromgif($source_path);
             break;
@@ -123,8 +121,7 @@ class ImageCRUDController extends CRUDController
 
         $rotate = imagerotate($source_gdim, $degree, 0);
 
-        switch ( $source_type )
-        {
+        switch ($source_type) {
         case IMAGETYPE_GIF:
             imagegif($rotate, $source_path);
             break;

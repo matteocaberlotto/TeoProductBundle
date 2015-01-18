@@ -45,7 +45,7 @@ class TagsToStringTransformer implements DataTransformerInterface
     /**
      * Transforms a string (number) to an object (issue).
      *
-     * @param  string $number
+     * @param string $number
      *
      * @return Issue|null
      *

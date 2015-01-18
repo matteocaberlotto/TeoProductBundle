@@ -52,7 +52,8 @@ class Category
 
     protected $tags;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         $this->tags = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -92,7 +93,7 @@ class Category
     /**
      * Set position
      *
-     * @param string $position
+     * @param  string   $position
      * @return Category
      */
     public function setPosition($position)
@@ -115,7 +116,7 @@ class Category
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string   $slug
      * @return Category
      */
     public function setSlug($slug)
@@ -138,7 +139,7 @@ class Category
     /**
      * Set parent
      *
-     * @param Category $parent
+     * @param  Category $parent
      * @return Category
      */
     public function setParent(Category $parent = null)
@@ -161,7 +162,7 @@ class Category
     /**
      * Add products
      *
-     * @param \Teo\ProductBundle\Model\Product $products
+     * @param  \Teo\ProductBundle\Model\Product $products
      * @return Category
      */
     public function addProduct(\Teo\ProductBundle\Model\Product $products)
@@ -214,11 +215,10 @@ class Category
         return $this;
     }
 
-
     /**
      * Add categories
      *
-     * @param Category $categories
+     * @param  Category $categories
      * @return Category
      */
     public function addCategories(Category $categories)
@@ -339,8 +339,7 @@ class Category
     {
         $tags = $this->getTags();
 
-        foreach ($tags as $tag)
-        {
+        foreach ($tags as $tag) {
             if ($tag->getName() == $name) {
                 return true;
             }
@@ -357,7 +356,7 @@ class Category
     /**
      * Add tags
      *
-     * @param \Teo\ProductBundle\Model\Tag $tags
+     * @param  \Teo\ProductBundle\Model\Tag $tags
      * @return Bookmark
      */
     public function addTag(\Teo\ProductBundle\Model\Tag $tags)
@@ -399,11 +398,10 @@ class Category
         return $this;
     }
 
-
     /**
      * Set options
      *
-     * @param array $options
+     * @param  array    $options
      * @return Category
      */
     public function setOptions($options)

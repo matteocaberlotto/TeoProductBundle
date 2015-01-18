@@ -46,7 +46,8 @@ class UploadManager
         $image->setPath(DIRECTORY_SEPARATOR . $this->getUploadDir() . DIRECTORY_SEPARATOR . $cleanName);
     }
 
-    public function uploadFile($file) {
+    public function uploadFile($file)
+    {
         // use the original file name here but you should
         // sanitize it at least to avoid any security issues
         $cleanName = $this->cleanFileName($file);

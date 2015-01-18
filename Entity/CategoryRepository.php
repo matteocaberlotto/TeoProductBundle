@@ -15,12 +15,14 @@ class CategoryRepository extends EntityRepository
     public function findCategoryByTag($tag)
     {
         $q = $this->getQueryForTag($tag);
+
         return $q->getQuery()->getOneOrNullResult();
     }
 
     public function findCategoriesByTag($tag)
     {
         $q = $this->getQueryForTag($tag);
+
         return $q->getQuery()->getResult();
     }
 
@@ -30,6 +32,7 @@ class CategoryRepository extends EntityRepository
         $q
             ->orderBy('c.position', 'ASC')
             ;
+
         return $q->getQuery()->getResult();
     }
 
@@ -40,6 +43,7 @@ class CategoryRepository extends EntityRepository
             ->where('c.parent is NULL')
             ->orderBy('c.position', 'ASC')
             ;
+
         return $q->getQuery()->getResult();
     }
 
@@ -52,6 +56,7 @@ class CategoryRepository extends EntityRepository
             ->setParameter('name', $tag)
             ->orderBy('c.position', 'ASC')
             ;
+
         return $q;
     }
 

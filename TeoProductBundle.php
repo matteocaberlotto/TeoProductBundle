@@ -5,8 +5,6 @@ namespace Teo\ProductBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-use Teo\ProductBundle\Mapping\DoctrineOrmMappingPass;
-
 class TeoProductBundle extends Bundle
 {
     /**

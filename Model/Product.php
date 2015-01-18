@@ -71,9 +71,7 @@ class Product
      */
     protected $available;
 
-
     protected $locale;
-
 
     // not mapped, added by Teo\ProductBundle
     protected $current_locale;
@@ -125,7 +123,7 @@ class Product
     /**
      * Set slug
      *
-     * @param string $slug
+     * @param  string  $slug
      * @return Product
      */
     public function setSlug($slug)
@@ -148,7 +146,7 @@ class Product
     /**
      * Set position
      *
-     * @param string $position
+     * @param  string   $position
      * @return Category
      */
     public function setPosition($position)
@@ -171,7 +169,7 @@ class Product
     /**
      * Add images
      *
-     * @param \Teo\ProductBundle\Model\Image $images
+     * @param  \Teo\ProductBundle\Model\Image $images
      * @return Product
      */
     public function addImage(\Teo\ProductBundle\Model\Image $images)
@@ -194,7 +192,7 @@ class Product
     /**
      * Add attachments
      *
-     * @param \Teo\ProductBundle\Model\Attachment $attachments
+     * @param  \Teo\ProductBundle\Model\Attachment $attachments
      * @return Product
      */
     public function addAttachment(\Teo\ProductBundle\Model\Attachment $attachments)
@@ -239,7 +237,7 @@ class Product
     /**
      * Add categories
      *
-     * @param \Teo\ProductBundle\Model\Category $categories
+     * @param  \Teo\ProductBundle\Model\Category $categories
      * @return Product
      */
     public function addCategory(\Teo\ProductBundle\Model\Category $category)
@@ -289,7 +287,7 @@ class Product
     /**
      * Set created
      *
-     * @param \DateTime $created
+     * @param  \DateTime   $created
      * @return Reservation
      */
     public function setCreated($created)
@@ -312,7 +310,7 @@ class Product
     /**
      * Set updated
      *
-     * @param \DateTime $updated
+     * @param  \DateTime   $updated
      * @return Reservation
      */
     public function setUpdated($updated)
@@ -341,7 +339,6 @@ class Product
         $this->created = new \DateTime;
     }
 
-
     /**
      * Set updated value on update.
      * This is meant to be hooked to lifetime cycle callback.
@@ -369,7 +366,7 @@ class Product
     /**
      * Set extras
      *
-     * @param array $extras
+     * @param  array   $extras
      * @return Product
      */
     public function setExtras($extras)
@@ -394,6 +391,7 @@ class Product
         if (isset($this->extras[$key])) {
             return $this->extras[$key];
         }
+
         return false;
     }
 
@@ -409,17 +407,20 @@ class Product
         return isset($this->extras[$key]);
     }
 
-    public function hasAttachments() {
+    public function hasAttachments()
+    {
         return count($this->attachments);
     }
 
-    public function getAttachments() {
+    public function getAttachments()
+    {
         return $this->attachments;
     }
 
     public function setAttachments($attachments)
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 
@@ -442,7 +443,7 @@ class Product
     /**
      * Set available
      *
-     * @param boolean $available
+     * @param  boolean $available
      * @return Product
      */
     public function setAvailable($available)
@@ -465,7 +466,7 @@ class Product
     /**
      * Set variants
      *
-     * @param array $variants
+     * @param  array   $variants
      * @return Product
      */
     public function setVariants($variants)
@@ -488,7 +489,7 @@ class Product
     /**
      * Set additions
      *
-     * @param array $additions
+     * @param  array   $additions
      * @return Product
      */
     public function setAdditions($additions)

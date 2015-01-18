@@ -6,13 +6,9 @@ use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
-use Teo\ProductBundle\Form\UploadHelper;
 use Teo\ProductBundle\Form\DataTransformer\ImagesToFileTransformer;
 use Teo\ProductBundle\Form\DataTransformer\AttachmentToFileTransformer;
 use Teo\ProductBundle\Form\DataTransformer\CategoryToCollectionTransformer;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityRepository;
 use Teo\ProductBundle\SlugGenerator;
 use Sonata\AdminBundle\Route\RouteCollection;
@@ -84,6 +80,7 @@ class ProductAdmin extends Admin
                 $name, $opt['type'], $opt['options']
             );
         }
+
         return $extra;
     }
 
@@ -202,7 +199,6 @@ class ProductAdmin extends Admin
                 'label' => 'Categories'
             ));
         }
-
 
         $formMapper
             ->add(

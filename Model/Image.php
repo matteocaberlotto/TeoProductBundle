@@ -32,7 +32,7 @@ class Image
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -42,20 +42,20 @@ class Image
     /**
      * Set path
      *
-     * @param string $path
+     * @param  string $path
      * @return Image
      */
     public function setPath($path)
     {
         $this->path = $path;
-    
+
         return $this;
     }
 
     /**
      * Get path
      *
-     * @return string 
+     * @return string
      */
     public function getPath()
     {
@@ -65,44 +65,43 @@ class Image
     /**
      * Set position
      *
-     * @param string $position
+     * @param  string $position
      * @return Image
      */
     public function setPosition($position)
     {
         $this->position = $position;
-    
+
         return $this;
     }
 
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {
         return $this->position;
     }
 
-
     /**
      * Set product
      *
-     * @param \Teo\ProductBundle\Model\Product $product
+     * @param  \Teo\ProductBundle\Model\Product $product
      * @return Image
      */
     public function setProduct(\Teo\ProductBundle\Model\Product $product = null)
     {
         $this->product = $product;
-    
+
         return $this;
     }
 
     /**
      * Get product
      *
-     * @return \Teo\ProductBundle\Model\Product 
+     * @return \Teo\ProductBundle\Model\Product
      */
     public function getProduct()
     {

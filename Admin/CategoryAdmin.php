@@ -10,7 +10,6 @@ use Teo\ProductBundle\Form\DataTransformer\TagsToStringTransformer;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Teo\ProductBundle\SlugGenerator;
 
-
 class CategoryAdmin extends Admin
 {
     protected $unique_category, $category_extra_options;
@@ -40,6 +39,7 @@ class CategoryAdmin extends Admin
                 $name, $opt['type'], $opt['options']
             );
         }
+
         return $extra;
     }
 
