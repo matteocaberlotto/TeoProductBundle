@@ -19,4 +19,61 @@ $(".teo_product_images").sortable({
         });
     }
 });
+
+/* Add "copy to all languages" utility */
+$('.a2lix_translations .tab-pane > div')
+    .append('<div class="control-group"><a class="btn btn-warning" onclick="copyToAll(this);" href="javascript:;">Copy to all <span class="icon-forward icon-white"></span></a></div>');
+
+var getPaneLanguage = function (element) {
+    var classnames = element.get(0).className.split(" ");
+    var i;
+    for (i in classnames) {
+        var candidates = /a2lix_translationsFields-[a-z]{2}/.exec(classnames[i]);
+        return candidates[0].split('-')[1];
+    }
+};
+
+var copyToAll = function (element) {
+
+    // gather data
+    var fields = {};
+    $(element).parents('.tab-pane').eq(0).find('input, textarea').each(function (i) {
+        if ($(this).attr('type') !== 'hidden') {
+
+            if ($(this).hasClass('ckeditor')) {
+                fields[$(this).attr('name')] = CKEDITOR.instances[$(this).attr('id')].getData();
+            } else {
+                fields[$(this).attr('name')] = $(this).val();
+            }
+        }
+    });
+
+    var source_language = getPaneLanguage($(element).parents('.tab-pane.active').eq(0));
+
+    $('.a2lix_translations .a2lix_translationsFields .tab-pane:not(.active)')
+        .each(function () {
+            var name;
+            for (name in fields) {
+
+                var target_language = getPaneLanguage($(this));
+                var target_name = name.replace(source_language, target_language);
+
+                var selector;
+                if ($(this).find('input[name="' + target_name + '"]').length) {
+                    selector = 'input[name="' + target_name + '"]';
+                } else {
+                    selector = 'textarea[name="' + target_name + '"]';
+                }
+
+                if ($(this).find(selector).hasClass('ckeditor')) {
+                    CKEDITOR.instances[$(this).find(selector).attr('id')].setData(fields[name])
+                } else {
+                    $(this).find(selector).val(fields[name]);
+                }
+
+            }
+        });
+
+    return false;
+};
 </script>
