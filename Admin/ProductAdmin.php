@@ -35,6 +35,8 @@ class ProductAdmin extends Admin
 
     protected $category_class = false;
 
+    protected $image_class = false;
+
     protected $transformers = array();
 
     public function addTrasformer($transformer)
@@ -114,10 +116,15 @@ class ProductAdmin extends Admin
         $this->category_class = $class;
     }
 
+    public function setImageClass($class)
+    {
+        $this->image_class = $class;
+    }
+
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $imagesToFileTransformer = new ImagesToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
+        $imagesToFileTransformer = new ImagesToFileTransformer($this->getModelManager(), $this->um, $this->getSubject(), $this->image_class);
         $attachmentToFileTransformer = new AttachmentToFileTransformer($this->getModelManager(), $this->um, $this->getSubject());
 
         $options = array(

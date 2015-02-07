@@ -20,7 +20,7 @@
         </label>
 
         {% if is_image %}
-        <a style="margin-left:20px" class="btn btn-default" href="{{ path('admin_teo_product_image_crop', { "src": rel_path }) }}">
+        <a style="margin-left:20px" class="btn btn-default" href="{{ get_service('sonata.admin.image').generateUrl('crop', {"src": rel_path}) }}">
             <i class="fa fa-picture-o"></i> Crop
         </a>
 

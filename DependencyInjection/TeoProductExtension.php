@@ -57,6 +57,7 @@ class TeoProductExtension extends Extension
         }
 
         $container->getDefinition('sonata.admin.product')->addMethodCall('setCategoryClass', array($config['category_class']));
+        $container->getDefinition('sonata.admin.product')->addMethodCall('setImageClass', array($config['product_image_class']));
 
         $container->getDefinition('sonata.admin.category')->addMethodCall('setExtraOptions', array($config['category_extra_options']));
         $container->getDefinition('sonata.admin.product')->addMethodCall('setExtraOptions', array($config['product_extra_options']));

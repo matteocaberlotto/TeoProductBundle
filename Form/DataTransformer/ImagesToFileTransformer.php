@@ -4,18 +4,19 @@ namespace Teo\ProductBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
-use Teo\ProductBundle\Entity\Image;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 
 class ImagesToFileTransformer implements DataTransformerInterface
 {
+    protected $modelManager, $uploadManager, $product, $image_class;
 
-    public function __construct($modelManager, $uploadManager, $product)
+    public function __construct($modelManager, $uploadManager, $product, $image_class)
     {
         $this->modelManager = $modelManager;
         $this->uploadManager = $uploadManager;
         $this->product = $product;
+        $this->image_class = $image_class;
     }
 
     /**
@@ -66,8 +67,9 @@ class ImagesToFileTransformer implements DataTransformerInterface
                 // delete image and continue
 
                 $imageObject = $this->modelManager
-                    ->findOneBy('TeoProductBundle:Image', array('position' => $position, 'product' => $this->product))
+                    ->findOneBy($this->image_class, array('position' => $position, 'product' => $this->product))
                 ;
+
                 $this->modelManager->getEntityManager($imageObject)->remove($imageObject);
                 $position++;
                 continue;
@@ -77,7 +79,7 @@ class ImagesToFileTransformer implements DataTransformerInterface
 
             if ($this->product->getId()) {
                 $imageObject = $this->modelManager
-                    ->findOneBy('TeoProductBundle:Image', array('position' => $position, 'product' => $this->product))
+                    ->findOneBy($this->image_class, array('position' => $position, 'product' => $this->product))
                 ;
             }
 
@@ -101,7 +103,7 @@ class ImagesToFileTransformer implements DataTransformerInterface
 
             // create and save a new image
             if (null === $imageObject) {
-                $imageObject = new Image;
+                $imageObject = new $this->image_class;
                 $imageObject->setProduct($this->product);
                 $imageObject->setPosition($position);
                 $this->modelManager->getEntityManager($imageObject)->persist($imageObject);
