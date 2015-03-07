@@ -4,7 +4,7 @@
     xsi:schemaLocation="https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
 
     <mapped-superclass name="Teo\ProductBundle\Entity\Tag">
-        <field name="name" type="string"/>
+        <field name="name" type="string" column="string" length="255" unique="true"/>
     </mapped-superclass>
 
 </doctrine-mapping>
