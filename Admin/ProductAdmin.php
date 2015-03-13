@@ -35,6 +35,8 @@ class ProductAdmin extends Admin
 
     protected $category_class = false;
 
+    protected $image_class = false;
+
     protected $transformers = array();
 
     public function addTrasformer($transformer)
@@ -112,6 +114,11 @@ class ProductAdmin extends Admin
     public function setCategoryClass($class)
     {
         $this->category_class = $class;
+    }
+
+    public function setImageClass($class)
+    {
+        $this->image_class = $class;
     }
 
     // Fields to be shown on create/edit forms
