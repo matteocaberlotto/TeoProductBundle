@@ -6,21 +6,21 @@
         </a>
     </span>
 
-    <a data-toggle="tooltip" title="Edit category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('edit', object) }}">
+    <a data-toggle="tooltip" title="{{ 'Edit category'|trans }}" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('edit', object) }}">
         <i class="fa fa-pencil icon-white"></i>
     </a>
 
     {% if level < max_depth %}
-    <a data-toggle="tooltip" title="Add child category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('create', object, { "parent": object.getId() }) }}">
+    <a data-toggle="tooltip" title="{{ 'Add child category'|trans }}" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('create', object, { "parent": object.getId() }) }}">
         <i class="fa fa-plus icon-white"></i>
     </a>
     {% endif %}
 
-    <a data-toggle="tooltip" title="Reorder category" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
+    <a data-toggle="tooltip" title="{{ 'Reorder category'|trans }}" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
         <i class="fa fa-arrows-v icon-white"></i>
     </a>
 
-    <a data-toggle="tooltip" title="Remove category" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('delete', object) }}">
+    <a data-toggle="tooltip" title="{{ 'Remove category'|trans }}" class="tooltip-trigger btn btn-mini btn-primary" href="{{ admin.generateObjectUrl('delete', object) }}">
         <i class="fa fa-times icon-white"></i>
     </a>
 
@@ -32,7 +32,7 @@
         {% endif %}
     {% endif %}
 
-    <a data-toggle="tooltip" title="Create product" class="tooltip-trigger btn btn-mini btn-primary" href="{{ get_service('sonata.admin.product').generateUrl('create', {'parent': object.id}) }}">
+    <a data-toggle="tooltip" title="{{ 'Create product'|trans }}" class="tooltip-trigger btn btn-mini btn-primary" href="{{ get_service('sonata.admin.product').generateUrl('create', {'parent': object.id}) }}">
         <i class="fa fa-barcode icon-white"></i>
     </a>
 
