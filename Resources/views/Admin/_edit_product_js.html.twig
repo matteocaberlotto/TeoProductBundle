@@ -25,12 +25,14 @@ $(".teo_product_images").sortable({
 
 /* Add "copy to all languages" utility */
 $('.a2lix_translations .tab-pane > div')
-    .append('<div class="control-group">'+
+    .append(
+        '<div class="control-group">'+
         '<a class="btn btn-warning" onclick="copyToAll(this);" href="javascript:;">'+
         'Copy content to all languages '+
         '<span class="fa fa-forward"></span>'+
         '</a>'+
-        '</div>');
+        '</div>'
+    );
 
 var getPaneLanguage = function (element) {
     var classnames = element.get(0).className.split(" ");

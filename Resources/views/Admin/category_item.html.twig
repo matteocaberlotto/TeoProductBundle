@@ -36,17 +36,6 @@
         <i class="fa fa-barcode icon-white"></i>
     </a>
 
-    {% if object.hasChildren() %}
-
-    {% set childLevel = level + 1 %}
-    <ul class="cat-list">
-        {% for child in object.getOrderedCategories() %}
-            {% include 'TeoProductBundle:Admin:category_item.html.twig' with { "object": child, "level": childLevel } %}
-        {% endfor %}
-    </ul>
-
-    {% endif %}
-
     {% if show_products %}
         {% if object.hasProducts() %}
         <ul class="prod-list collapse" id="prods-{{ object.getId() }}" style="height:0">
@@ -55,5 +44,17 @@
             {% endfor %}
         </ul>
         {% endif %}
+    {% endif %}
+
+    {% if object.hasChildren() %}
+
+        {% set childLevel = level + 1 %}
+
+        <ul class="cat-list">
+            {% for child in object.getOrderedCategories() %}
+                {% include 'TeoProductBundle:Admin:category_item.html.twig' with { "object": child, "level": childLevel } %}
+            {% endfor %}
+        </ul>
+
     {% endif %}
 </li>
