@@ -1,8 +1,5 @@
 <td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}">
-
-    {% if value is not empty %}
-        {% for translation in value %}
-            <p><strong>{{ translation.getLocale()|upper }}</strong>: {{ translation.getTitle() }}</p>
-        {% endfor %}
-    {% endif %}
+    {% for translation in object.translations %}
+        <p><strong>{{ translation.locale|upper }}</strong>: {{ translation.title }}</p>
+    {% endfor %}
 </td>

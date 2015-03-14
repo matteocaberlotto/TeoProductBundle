@@ -2,7 +2,7 @@
 
 namespace Teo\ProductBundle\Controller;
 
-use Sonata\AdminBundle\Controller\CRUDController;
+use Teo\ProductBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
