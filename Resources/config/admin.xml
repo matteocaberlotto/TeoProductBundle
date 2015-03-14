@@ -24,7 +24,7 @@
             <call method="setCategoryClass">
                 <argument>%teo_product.category.class%</argument>
             </call>
-            <call method="setCategoryClass">
+            <call method="setImageClass">
                 <argument>%teo_product.image.class%</argument>
             </call>
             <call method="setUploadManager">
