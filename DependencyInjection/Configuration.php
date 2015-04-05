@@ -66,6 +66,7 @@ class Configuration implements ConfigurationInterface
                     ->prototype('array')
                         ->children()
                             ->scalarNode('field_type')->end()
+                            ->scalarNode('label')->end()
                             ->arrayNode('locale_options')
                                 ->useAttributeAsKey('name')
                                 ->prototype('array')
