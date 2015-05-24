@@ -10,7 +10,6 @@
         <field name="position" type="integer" nullable="true"/>
         <field name="available" type="boolean" nullable="true"/>
         <field name="variants" type="array" nullable="true"/>
-        <field name="additions" type="array" nullable="true"/>
 
         <field name="created" type="datetime"/>
         <field name="updated" type="datetime"/>

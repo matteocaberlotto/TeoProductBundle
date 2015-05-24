@@ -168,15 +168,10 @@ class ProductAdmin extends Admin
             $formMapper
                 ->add('variants', 'collection', array(
                     'allow_add' => true,
-                    'prototype_name' => 'variante',
+                    'prototype_name' => 'variation__',
                     'label' => 'Variante prodotto',
-                    'allow_delete' => true
-                ))
-                ->add('additions', 'collection', array(
-                    'allow_add' => true,
-                    'prototype_name' => 'variante',
-                    'label' => 'Ingredienti addizionabili',
-                    'allow_delete' => true
+                    'allow_delete' => true,
+                    'help' => 'ES: senza zucchero'
                 ))
                 ;
         }
