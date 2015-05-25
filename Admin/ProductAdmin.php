@@ -153,16 +153,21 @@ class ProductAdmin extends Admin
                 'required' => false,
                 'help' => 'Human readable suffix for urls (leave blank to autogenerate)'
             ))
-            ->add('extras', 'sonata_type_immutable_array', array(
-                'keys' => $this->provideOptionsKeys(),
-                'required' => false,
-                'data' => $this->getSubject()->getExtras(),
-                'attr' => array(
-                    'class' => 'product_extras'
-                ),
-                'help' => 'extra options'
-            ))
         ;
+
+        if (count($this->provideOptionsKeys())) {
+            $formMapper
+                ->add('extras', 'sonata_type_immutable_array', array(
+                    'keys' => $this->provideOptionsKeys(),
+                    'required' => false,
+                    'data' => $this->getSubject()->getExtras(),
+                    'attr' => array(
+                        'class' => 'product_extras'
+                    ),
+                    'help' => 'extra options'
+                ))
+                ;
+        }
 
         if ($this->use_variant) {
             $formMapper
@@ -281,10 +286,7 @@ class ProductAdmin extends Admin
                 ->add('variants', null, array(
                 'template' => 'TeoProductBundle:Admin:product_variants.html.twig'
             ))
-                ->add('additions', null, array(
-                'template' => 'TeoProductBundle:Admin:product_additions.html.twig'
-            ))
-                ;
+            ;
         }
     }
 
