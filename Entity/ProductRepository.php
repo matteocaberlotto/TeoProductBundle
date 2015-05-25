@@ -12,6 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+    protected $use_available = false;
+
+    public function setUseAvailable()
+    {
+        $this->use_available = true;
+    }
+
     public function reorder($ids)
     {
         if (count($ids) == 0) {
@@ -36,6 +43,13 @@ class ProductRepository extends EntityRepository
             ->leftJoin('p.translations', 't')
             ->where('t.title LIKE :search')
             ->setParameter('search', '%' . $search . '%');
+
+        if ($this->use_available) {
+            $q
+                ->andWhere('p.available = :available')
+                ->setParameter('available', true)
+                ;
+        }
 
         return $q->getQuery()->getResult();
     }
