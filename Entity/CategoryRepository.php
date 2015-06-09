@@ -12,6 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    protected $use_available = false;
+
+    public function setUseAvailable()
+    {
+        $this->use_available = true;
+    }
+
     public function findCategoryByTag($tag)
     {
         $q = $this->getQueryForTag($tag);
@@ -44,6 +51,13 @@ class CategoryRepository extends EntityRepository
             ->orderBy('c.position', 'ASC')
             ;
 
+        if ($this->use_available) {
+            $q
+                ->leftJoin('c.products', 'p')
+                ->addWhere('p.active = 1')
+                ;
+        }
+
         return $q->getQuery()->getResult();
     }
 
@@ -75,14 +89,24 @@ class CategoryRepository extends EntityRepository
         $this->_em->flush();
     }
 
-    // public function find($id)
-    // {
-    //     $q = $this->createQueryBuilder('c');
-    //     $q
-    //         ->innerJoin('c.translations', 't')
-    //         ->where('c.id = :id')
-    //         ->setParameter('id', $id['id'])
-    //         ;
-    //     return $q->getQuery()->getOneOrNullResult();
-    // }
+    public function getNextId($previous)
+    {
+        $q = $this->createQueryBuilder('p');
+
+        $q
+            ->select('p.id')
+            ->where('p.id > :previous')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+            ;
+
+        $q->setParameter('previous', $previous);
+
+        $result = $q->getQuery()->getScalarResult();
+        if (count($result)) {
+            return $result[0]['id'];
+        }
+
+        return false;
+    }
 }

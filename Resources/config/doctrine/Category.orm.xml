@@ -8,5 +8,6 @@
         <field name="level" type="integer" />
         <field name="options" type="array" nullable="true"/>
         <field name="position" type="integer" nullable="true" />
+        <field name="available" type="boolean" nullable="true"/>
     </mapped-superclass>
 </doctrine-mapping>

@@ -14,6 +14,8 @@ class CategoryAdmin extends Admin
 {
     protected $unique_category, $category_extra_options;
 
+    protected $use_available = false;
+
     protected $transformers = array();
 
     public function addTrasformer($transformer)
@@ -29,6 +31,11 @@ class CategoryAdmin extends Admin
     public function setExtraOptions($options)
     {
         $this->category_extra_options = $options;
+    }
+
+    public function setUseAvailable()
+    {
+        $this->use_available = true;
     }
 
     protected function provideOptionsKeys()
@@ -66,6 +73,12 @@ class CategoryAdmin extends Admin
                     )
                 )
             ));
+
+        if ($this->use_available) {
+            $formMapper
+                ->add('available')
+                ;
+        }
 
         $formMapper
             ->add('parent', null, array(
