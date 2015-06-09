@@ -53,4 +53,25 @@ class ProductRepository extends EntityRepository
 
         return $q->getQuery()->getResult();
     }
+
+    public function getNextId($previous)
+    {
+        $q = $this->createQueryBuilder('p');
+
+        $q
+            ->select('p.id')
+            ->where('p.id > :previous')
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(1)
+            ;
+
+        $q->setParameter('previous', $previous);
+
+        $result = $q->getQuery()->getScalarResult();
+        if (count($result)) {
+            return $result[0]['id'];
+        }
+
+        return false;
+    }
 }
