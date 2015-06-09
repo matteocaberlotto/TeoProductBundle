@@ -170,10 +170,10 @@ class Category
     /**
      * Add products
      *
-     * @param  \Teo\ProductBundle\Model\Product $products
+     * @param  \Teo\ProductBundle\Entity\Product $products
      * @return Category
      */
-    public function addProduct(\Teo\ProductBundle\Model\Product $products)
+    public function addProduct(\Teo\ProductBundle\Entity\Product $products)
     {
         $this->products[] = $products;
 
@@ -183,9 +183,9 @@ class Category
     /**
      * Remove products
      *
-     * @param \Teo\ProductBundle\Model\Product $products
+     * @param \Teo\ProductBundle\Entity\Product $products
      */
-    public function removeProduct(\Teo\ProductBundle\Model\Product $products)
+    public function removeProduct(\Teo\ProductBundle\Entity\Product $products)
     {
         $this->products->removeElement($products);
     }
@@ -364,10 +364,10 @@ class Category
     /**
      * Add tags
      *
-     * @param  \Teo\ProductBundle\Model\Tag $tags
+     * @param  \Teo\ProductBundle\Entity\Tag $tags
      * @return Bookmark
      */
-    public function addTag(\Teo\ProductBundle\Model\Tag $tags)
+    public function addTag(\Teo\ProductBundle\Entity\Tag $tags)
     {
         $this->tags[] = $tags;
 
@@ -377,9 +377,9 @@ class Category
     /**
      * Remove tags
      *
-     * @param \Teo\ProductBundle\Model\Tag $tags
+     * @param \Teo\ProductBundle\Entity\Tag $tags
      */
-    public function removeTag(\Teo\ProductBundle\Model\Tag $tags)
+    public function removeTag(\Teo\ProductBundle\Entity\Tag $tags)
     {
         $this->tags->removeElement($tags);
     }

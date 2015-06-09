@@ -172,10 +172,10 @@ class Product
     /**
      * Add images
      *
-     * @param  \Teo\ProductBundle\Model\Image $images
+     * @param  \Teo\ProductBundle\Entity\Image $images
      * @return Product
      */
-    public function addImage(\Teo\ProductBundle\Model\Image $images)
+    public function addImage(\Teo\ProductBundle\Entity\Image $images)
     {
         $this->images[] = $images;
 
@@ -185,9 +185,9 @@ class Product
     /**
      * Remove images
      *
-     * @param \Teo\ProductBundle\Model\Image $images
+     * @param \Teo\ProductBundle\Entity\Image $images
      */
-    public function removeImage(\Teo\ProductBundle\Model\Image $images)
+    public function removeImage(\Teo\ProductBundle\Entity\Image $images)
     {
         $this->images->removeElement($images);
     }
@@ -195,10 +195,10 @@ class Product
     /**
      * Add attachments
      *
-     * @param  \Teo\ProductBundle\Model\Attachment $attachments
+     * @param  \Teo\ProductBundle\Entity\Attachment $attachments
      * @return Product
      */
-    public function addAttachment(\Teo\ProductBundle\Model\Attachment $attachments)
+    public function addAttachment(\Teo\ProductBundle\Entity\Attachment $attachments)
     {
         $this->attachments[] = $attachments;
 
@@ -208,9 +208,9 @@ class Product
     /**
      * Remove attachments
      *
-     * @param \Teo\ProductBundle\Model\Attachment $attachments
+     * @param \Teo\ProductBundle\Entity\Attachment $attachments
      */
-    public function removeAttachment(\Teo\ProductBundle\Model\Attachment $attachments)
+    public function removeAttachment(\Teo\ProductBundle\Entity\Attachment $attachments)
     {
         $this->attachments->removeElement($attachments);
     }
@@ -240,10 +240,10 @@ class Product
     /**
      * Add categories
      *
-     * @param  \Teo\ProductBundle\Model\Category $categories
+     * @param  \Teo\ProductBundle\Entity\Category $categories
      * @return Product
      */
-    public function addCategory(\Teo\ProductBundle\Model\Category $category)
+    public function addCategory(\Teo\ProductBundle\Entity\Category $category)
     {
         $this->categories[] = $category;
 
@@ -253,9 +253,9 @@ class Product
     /**
      * Remove categories
      *
-     * @param \Teo\ProductBundle\Model\Category $categories
+     * @param \Teo\ProductBundle\Entity\Category $categories
      */
-    public function removeCategory(\Teo\ProductBundle\Model\Category $category)
+    public function removeCategory(\Teo\ProductBundle\Entity\Category $category)
     {
         $this->categories->removeElement($category);
     }

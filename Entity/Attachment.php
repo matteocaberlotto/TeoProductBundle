@@ -28,7 +28,7 @@ class Attachment
     protected $position;
 
     /**
-     * @var \Teo\ProductBundle\Model\Product
+     * @var \Teo\ProductBundle\Entity\Product
      */
     protected $product;
 
@@ -96,10 +96,10 @@ class Attachment
     /**
      * Set product
      *
-     * @param  \Teo\ProductBundle\Model\Product $product
+     * @param  \Teo\ProductBundle\Entity\Product $product
      * @return Image
      */
-    public function setProduct(\Teo\ProductBundle\Model\Product $product = null)
+    public function setProduct(\Teo\ProductBundle\Entity\Product $product = null)
     {
         $this->product = $product;
 
@@ -109,7 +109,7 @@ class Attachment
     /**
      * Get product
      *
-     * @return \Teo\ProductBundle\Model\Product
+     * @return \Teo\ProductBundle\Entity\Product
      */
     public function getProduct()
     {

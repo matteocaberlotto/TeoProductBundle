@@ -94,7 +94,7 @@ class Image
      * @param  \Teo\ProductBundle\Model\Product $product
      * @return Image
      */
-    public function setProduct(\Teo\ProductBundle\Model\Product $product = null)
+    public function setProduct(\Teo\ProductBundle\Entity\Product $product = null)
     {
         $this->product = $product;
 
