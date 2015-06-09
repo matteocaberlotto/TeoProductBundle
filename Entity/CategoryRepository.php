@@ -54,7 +54,8 @@ class CategoryRepository extends EntityRepository
         if ($this->use_available) {
             $q
                 ->leftJoin('c.products', 'p')
-                ->addWhere('p.active = 1')
+                ->andWhere('c.available = :available AND p.available = :available')
+                ->setParameter('available', true)
                 ;
         }
 
