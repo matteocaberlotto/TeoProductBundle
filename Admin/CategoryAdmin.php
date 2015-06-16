@@ -153,6 +153,7 @@ class CategoryAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('reorder');
+        $collection->add('toggle_available', $this->getRouterIdParameter() . '/toggle/available');
     }
 
     public function updateTags($category)

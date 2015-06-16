@@ -14,7 +14,7 @@ class Twig extends \Twig_Extension
     public function getGlobals()
     {
         return array(
-
+            'teo_products_use_available' => $this->container->getParameter('teo_product.use_available')
         );
     }
 

@@ -121,4 +121,29 @@ class CategoryCRUDController extends CRUDController
 
         return new JsonResponse(array('result' => true), 200);
     }
+
+    public function toggleAvailableAction()
+    {
+        if (false === $this->admin->isGranted('EDIT')) {
+            throw new AccessDeniedException();
+        }
+
+        $id     = $this->get('request')->get($this->admin->getIdParameter());
+        $object = $this->admin->getObject($id);
+
+        if ($object->isAvailable()) {
+            $available = false;
+        } else {
+            $available = true;
+        }
+
+        $object->setAvailable($available);
+
+        $this->get('doctrine')->getManager()->flush();
+
+        return new JsonResponse(array(
+            'status' => 'ok',
+            'available' => $available
+        ));
+    }
 }

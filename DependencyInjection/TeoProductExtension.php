@@ -53,6 +53,7 @@ class TeoProductExtension extends Extension
             $container->getDefinition('sonata.admin.category')->addMethodCall('setUseAvailable');
             $container->getDefinition('teo.products')->addMethodCall('setUseAvailable');
             $container->getDefinition('teo.categories')->addMethodCall('setUseAvailable');
+            $container->setParameter('teo_product.use_available', true);
         }
 
         if ($config['use_variant']) {

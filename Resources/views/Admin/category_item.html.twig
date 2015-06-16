@@ -14,6 +14,16 @@
         {% endif %}
     {% endif %}
 
+    {% if teo_products_use_available %}
+        <a data-toggle="tooltip" title="{{ 'Toggle active category'|trans }}" class="btn btn-mini btn-primary toggle-active-category" href="{{ admin.generateObjectUrl('toggle_available', object) }}">
+            {% if object.getAvailable() %}
+                <i class="fa fa-check-square-o icon-white"></i>
+            {% else %}
+                <i class="fa fa-square-o icon-white"></i>
+            {% endif %}
+        </a>
+    {% endif %}
+
     <a data-toggle="tooltip" title="{{ 'Reorder category'|trans }}" class="btn btn-mini btn-primary reorder" href="javascript:;">
         <i class="fa fa-arrows-v icon-white"></i>
     </a>
@@ -38,11 +48,11 @@
 
     {% if show_products %}
         {% if object.hasProducts() %}
-        <ul class="prod-list collapse" id="prods-{{ object.getId() }}" style="height:0">
-            {% for product in object.getOrderedProducts() %}
-                {% include 'TeoProductBundle:Admin:category_product.html.twig' %}
-            {% endfor %}
-        </ul>
+            <ul class="prod-list collapse" id="prods-{{ object.getId() }}" style="height:0">
+                {% for product in object.getOrderedProducts() %}
+                    {% include 'TeoProductBundle:Admin:category_product.html.twig' %}
+                {% endfor %}
+            </ul>
         {% endif %}
     {% endif %}
 

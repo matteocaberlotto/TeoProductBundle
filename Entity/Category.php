@@ -467,4 +467,9 @@ class Category
     {
         return $this->available;
     }
+
+    public function isAvailable()
+    {
+        return $this->getAvailable();
+    }
 }

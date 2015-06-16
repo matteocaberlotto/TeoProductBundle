@@ -511,4 +511,9 @@ class Product
     {
         return $this->additions;
     }
+
+    public function isAvailable()
+    {
+        return $this->getAvailable();
+    }
 }

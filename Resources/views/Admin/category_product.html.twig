@@ -10,6 +10,16 @@
             {{ product.title() }}
         </a>
 
+    {% if teo_products_use_available %}
+        <a data-toggle="tooltip" title="{{ 'Toggle active product'|trans }}" class="btn btn-mini btn-primary toggle-active-product" href="{{ get_service('sonata.admin.product').generateUrl('toggle_available', {"id": product.id}) }}">
+            {% if product.getAvailable() %}
+                <i class="fa fa-check-square-o icon-white"></i>
+            {% else %}
+                <i class="fa fa-square-o icon-white"></i>
+            {% endif %}
+        </a>
+    {% endif %}
+
         <a title="{{ 'Reorder product'|trans }}" class="tooltip-trigger btn btn-mini btn-primary reorder" href="javascript:;">
             <i class="fa fa-arrows-v icon-white"></i>
         </a>

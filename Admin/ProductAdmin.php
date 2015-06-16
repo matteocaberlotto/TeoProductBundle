@@ -306,6 +306,7 @@ class ProductAdmin extends Admin
     {
         $collection->add('reorder');
         $collection->add('search');
+        $collection->add('toggle_available', $this->getRouterIdParameter() . '/toggle/available');
     }
 
     public function prePersist($product)
