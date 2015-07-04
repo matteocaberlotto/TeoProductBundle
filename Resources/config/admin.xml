@@ -42,6 +42,26 @@
             </call>
         </service>
 
+        <service id="sonata.admin.price" class="Teo\ProductBundle\Admin\PriceAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Prices"/>
+            <argument />
+            <argument>Teo\ProductBundle\Entity\Price</argument>
+            <argument />
+            <call method="setTranslationDomain">
+                <argument>TeoProductBundle</argument>
+            </call>
+        </service>
+
+        <service id="sonata.admin.price_list" class="Teo\ProductBundle\Admin\PriceListAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Content" label="Price list"/>
+            <argument />
+            <argument>Teo\ProductBundle\Entity\PriceList</argument>
+            <argument />
+            <call method="setTranslationDomain">
+                <argument>TeoProductBundle</argument>
+            </call>
+        </service>
+
         <service id="sonata.admin.attachment" class="Teo\ProductBundle\Admin\AttachmentAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Content" label="Attachments"/>
             <argument />

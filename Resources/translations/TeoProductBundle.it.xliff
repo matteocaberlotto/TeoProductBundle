@@ -10,6 +10,10 @@
                 <source>Products</source>
                 <target>Prodotti</target>
             </trans-unit>
+            <trans-unit id="prod">
+                <source>Product</source>
+                <target>Prodotto</target>
+            </trans-unit>
             <trans-unit id="transl">
                 <source>Translations</source>
                 <target>Traduzioni</target>
@@ -38,7 +42,30 @@
                 <source>Categories structure</source>
                 <target>Alberatura categorie</target>
             </trans-unit>
-
+            <trans-unit id="price">
+                <source>Price</source>
+                <target>Prezzo</target>
+            </trans-unit>
+            <trans-unit id="prices">
+                <source>Prices</source>
+                <target>Prezzi</target>
+            </trans-unit>
+            <trans-unit id="price_list">
+                <source>Price list</source>
+                <target>Listini</target>
+            </trans-unit>
+            <trans-unit id="price_list_2">
+                <source>Price List</source>
+                <target>Listino</target>
+            </trans-unit>
+            <trans-unit id="locale">
+                <source>Locale</source>
+                <target>Lingua</target>
+            </trans-unit>
+            <trans-unit id="name">
+                <source>Name</source>
+                <target>Nome</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

@@ -31,11 +31,17 @@ class ProductAdmin extends Admin
 
     protected $use_variant = false;
 
+    protected $use_pricelist = false;
+
     protected $product_class = false;
 
     protected $category_class = false;
 
     protected $image_class = false;
+
+    protected $default_locale = false;
+
+    protected $locales = false;
 
     protected $transformers = array();
 
@@ -111,6 +117,11 @@ class ProductAdmin extends Admin
         $this->use_variant = true;
     }
 
+    public function setUsePricelist()
+    {
+        $this->use_pricelist = true;
+    }
+
     public function setCategoryClass($class)
     {
         $this->category_class = $class;
@@ -119,6 +130,11 @@ class ProductAdmin extends Admin
     public function setImageClass($class)
     {
         $this->image_class = $class;
+    }
+
+    public function setDefaultLocale($locale)
+    {
+        $this->default_locale = $locale;
     }
 
     // Fields to be shown on create/edit forms
@@ -136,7 +152,26 @@ class ProductAdmin extends Admin
             $options['locales'] = $this->locales;
         }
 
+        if ($this->use_pricelist) {
+            $options['exclude_fields'] = array('price');
+        }
+
         $formMapper->add('translations', 'a2lix_translations', $options);
+
+        if ($this->use_pricelist) {
+            $formMapper
+                ->add('prices', 'sonata_type_collection', array(
+                        'by_reference' => true,
+                        'type_options' => array(
+                            'delete' => false,
+                            'btn_add' => true
+                        )
+                    ), array(
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                    ))
+                ;
+        }
 
         if ($this->use_available) {
             $formMapper
@@ -312,11 +347,28 @@ class ProductAdmin extends Admin
     public function prePersist($product)
     {
         $this->updateSlug($product);
+
+        if ($this->use_pricelist) {
+            $this->checkPricesRelation($product);
+        }
     }
 
     public function preUpdate($product)
     {
         $this->updateSlug($product);
+
+        if ($this->use_pricelist) {
+            $this->checkPricesRelation($product);
+        }
+    }
+
+    public function checkPricesRelation($product)
+    {
+        foreach ($product->getPrices() as $price) {
+            if (empty($price->getProduct())) {
+                $price->setProduct($product);
+            }
+        }
     }
 
     public function updateSlug($product)
