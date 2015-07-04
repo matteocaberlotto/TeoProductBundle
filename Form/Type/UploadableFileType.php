@@ -42,9 +42,11 @@ class UploadableFileType extends AbstractType
         }
 
         // if i spend 1 minute more it's not worth having a form framework.
-        foreach ($options['references'] as $image) {
-            if (isset($path) && $image->getPath() == $path) {
-                $view->vars['reference_id'] = $image->getId();
+        if (isset($options['references'])) {
+            foreach ($options['references'] as $image) {
+                if (isset($path) && $image->getPath() == $path) {
+                    $view->vars['reference_id'] = $image->getId();
+                }
             }
         }
 
