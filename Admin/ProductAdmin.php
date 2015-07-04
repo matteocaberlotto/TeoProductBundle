@@ -365,7 +365,8 @@ class ProductAdmin extends Admin
     public function checkPricesRelation($product)
     {
         foreach ($product->getPrices() as $price) {
-            if (empty($price->getProduct())) {
+            $related = $price->getProduct();
+            if (empty($related)) {
                 $price->setProduct($product);
             }
         }
