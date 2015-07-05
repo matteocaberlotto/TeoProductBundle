@@ -33,8 +33,6 @@ class ProductAdmin extends Admin
 
     protected $use_pricelist = false;
 
-    protected $product_class = false;
-
     protected $category_class = false;
 
     protected $image_class = false;
