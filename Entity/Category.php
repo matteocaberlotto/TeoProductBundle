@@ -472,4 +472,18 @@ class Category
     {
         return $this->getAvailable();
     }
+
+    public function getAvailableCategories()
+    {
+        // TODO: do this with iterator object.
+        $return = array();
+
+        foreach ($this->categories as $category) {
+            if ($category->isAvailable()) {
+                $return []= $category;
+            }
+        }
+
+        return $return;
+    }
 }
