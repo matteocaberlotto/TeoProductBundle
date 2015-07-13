@@ -89,6 +89,7 @@ class ImageCRUDController extends CRUDController
         return $this->render('TeoProductBundle:Admin:crop_image.html.twig', array(
             'path' => $path,
             'action' => 'crop',
+            'teo_product_aspect_ratio' => $this->container->getParameter('teo_product_aspect_ratio'),
             'actual_width' => $source_width,
             'return_path' => $return_path,
             'random' => md5(mt_rand()) . md5(mt_rand())

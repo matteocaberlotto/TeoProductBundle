@@ -146,7 +146,8 @@
         $('img#croppable').Jcrop({
             onChange:   refreshValues,
             onSelect:   updateCropPreview,
-            onRelease:  clearCropPreview
+            onRelease:  clearCropPreview,
+            aspectRatio: {{ teo_product_aspect_ratio }}
         },function(){
             jcrop_api = this;
         });

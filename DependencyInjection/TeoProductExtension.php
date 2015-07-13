@@ -30,6 +30,8 @@ class TeoProductExtension extends Extension
             $loader->load('admin.xml');
         }
 
+        $container->setParameter('teo_product_aspect_ratio', $config['teo_product_aspect_ratio']);
+
         $container->setParameter('teo_product.show_products', $config['show_products']);
 
         $container->setParameter('teo_product.maximum_depth', $config['maximum_depth']);
