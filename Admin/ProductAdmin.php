@@ -289,6 +289,7 @@ class ProductAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('translations.title')
             ->add('categories')
         ;
     }
@@ -344,14 +345,15 @@ class ProductAdmin extends Admin
 
     public function prePersist($product)
     {
-        $this->updateSlug($product);
-
-        if ($this->use_pricelist) {
-            $this->checkPricesRelation($product);
-        }
+        $this->commonLifeCycle($product);
     }
 
     public function preUpdate($product)
+    {
+        $this->commonLifeCycle($product);
+    }
+
+    public function commonLifeCycle($product)
     {
         $this->updateSlug($product);
 
