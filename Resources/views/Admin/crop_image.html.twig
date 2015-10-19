@@ -79,11 +79,11 @@
     </div>
 
     <div class="row-fluid">
-        <a class="btn btn-mini rotate-button" href="{{ path('admin_teo_product_image_rotate_image', { "direction": "clockwise", "path": app.request.get('src') }) }}">
+        <a class="btn btn-mini rotate-button" href="{{ admin.generateUrl('crop', {'uniqid': admin.uniqid, "direction": "clockwise", "path": app.request.get('src')}) }}">
             <i class="icon-repeat"></i> Rotate clockwise
         </a>
 
-        <a class="btn btn-mini rotate-button" href="{{ path('admin_teo_product_image_rotate_image', { "direction": "counterclockwise", "path": app.request.get('src') }) }}">
+        <a class="btn btn-mini rotate-button" href="{{ admin.generateUrl('crop', {'uniqid': admin.uniqid, "direction": "counterclockwise", "path": app.request.get('src')}) }}">
             <i class="icon-repeat"></i> Rotate counter-clockwise
         </a>
     </div>
