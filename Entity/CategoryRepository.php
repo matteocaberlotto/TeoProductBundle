@@ -48,7 +48,7 @@ class CategoryRepository extends EntityRepository
         $q = $this->createQueryBuilder('c');
         $q
             ->innerJoin('c.tags', 't')
-            ->andWhere('t.name = :name')
+            ->where('t.name = :name')
             ->setParameter('name', $tag)
             ->orderBy('c.position', 'ASC')
             ;
